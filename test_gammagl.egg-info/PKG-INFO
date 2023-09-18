@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: test-gammagl
+Version: 0.1
+Home-page: https://github.com/gyzhou2000/setup
+Download-URL: https://github.com/gyzhou2000/setup
+Author: zhou guangyu
+Author-email: 1029175863@qq.com
+Maintainer: zhou guangyu
+License: Apache-2.0 License
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: Apache Software License
+Requires-Python: >=3.6
+License-File: LICENSE

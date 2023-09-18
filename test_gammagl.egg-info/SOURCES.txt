@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+test_gammagl/__init__.py
+test_gammagl.egg-info/PKG-INFO
+test_gammagl.egg-info/SOURCES.txt
+test_gammagl.egg-info/dependency_links.txt
+test_gammagl.egg-info/top_level.txt
+test_gammagl/utils/__init__.py
+test_gammagl/utils/degree.py
