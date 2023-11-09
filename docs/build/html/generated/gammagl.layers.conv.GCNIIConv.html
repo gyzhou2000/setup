@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>gammagl.layers.conv.GCNIIConv &mdash; GammaGL 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="gammagl.layers.conv.APPNPConv" href="gammagl.layers.conv.APPNPConv.html" />
+    <link rel="prev" title="gammagl.layers.conv.GATV2Conv" href="gammagl.layers.conv.GATV2Conv.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GammaGL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">NOTES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/installation.html#system-requrements">System requrements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/installation.html#backend">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/installation.html#how-to-run">How to Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/introduction.html">Introduction by Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/introduction.html#data-handling-of-graphs">Data Handling of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/introduction.html#common-benchmark-datasets">Common Benchmark Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/introduction.html#mini-batches">Mini-batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/create_dataset.html">Creating Your Own Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_dataset.html#creating-in-memory-datasets">Creating “In Memory Datasets”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_dataset.html#creating-larger-datasets">Creating “Larger” Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_dataset.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_dataset.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/create_gnn.html">Creating Message Passing Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_gnn.html#the-messagepassing-base-class">The “MessagePassing” Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_gnn.html#implementing-the-gcn-layer">Implementing the GCN Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_gnn.html#implementing-the-edge-convolution">Implementing the Edge Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/create_gnn.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/batching.html">Advanced Mini-Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notes/batching.html#pairs-of-graphs">Pairs of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/batching.html#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notes/batching.html#batching-along-new-dimensions">Batching Along New Dimensions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../api/gammagl.data.html">gammagl.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.BaseGraph.html">gammagl.data.BaseGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.Graph.html">gammagl.data.Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.BatchGraph.html">gammagl.data.BatchGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.HeteroGraph.html">gammagl.data.HeteroGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.Dataset.html">gammagl.data.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.download_url.html">gammagl.data.download_url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.InMemoryDataset.html">gammagl.data.InMemoryDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.extract_zip.html">gammagl.data.extract_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.data.extract_tar.html">gammagl.data.extract_tar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/gammagl.datasets.html">gammagl.datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Amazon.html">gammagl.datasets.Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Coauthor.html">gammagl.datasets.Coauthor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.TUDataset.html">gammagl.datasets.TUDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Planetoid.html">gammagl.datasets.Planetoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Reddit.html">gammagl.datasets.Reddit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.IMDB.html">gammagl.datasets.IMDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Entities.html">gammagl.datasets.Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.Flickr.html">gammagl.datasets.Flickr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.HGBDataset.html">gammagl.datasets.HGBDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.WikipediaNetwork.html">gammagl.datasets.WikipediaNetwork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.WebKB.html">gammagl.datasets.WebKB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.ModelNet40.html">gammagl.datasets.ModelNet40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.DBLP.html">gammagl.datasets.DBLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.CA_GrQc.html">gammagl.datasets.CA_GrQc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.datasets.ZINC.html">gammagl.datasets.ZINC</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api/gammagl.layers.html">gammagl.layers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api/gammagl.layers.html#convolutional-layers">Convolutional Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/gammagl.layers.html#pooling-layers">Pooling Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/gammagl.layers.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/gammagl.loader.html">gammagl.loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.loader.DataLoader.html">gammagl.loader.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.loader.RandomWalk.html">gammagl.loader.RandomWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/gammagl.transforms.html">gammagl.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.BaseTransform.html">gammagl.transforms.BaseTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.AddMetaPaths.html">gammagl.transforms.AddMetaPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.Compose.html">gammagl.transforms.Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.SIGN.html">gammagl.transforms.SIGN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.NormalizeFeatures.html">gammagl.transforms.NormalizeFeatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.DropEdge.html">gammagl.transforms.DropEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.RandomLinkSplit.html">gammagl.transforms.RandomLinkSplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.mask_test_edges.html">gammagl.transforms.mask_test_edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.transforms.sparse_to_tuple.html">gammagl.transforms.sparse_to_tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/gammagl.utils.html">gammagl.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.calc_A_norm_hat.html">gammagl.utils.calc_A_norm_hat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.calc_gcn_norm.html">gammagl.utils.calc_gcn_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.segment_softmax.html">gammagl.utils.segment_softmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.sort_edge_index.html">gammagl.utils.sort_edge_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.coalesce.html">gammagl.utils.coalesce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.to_undirected.html">gammagl.utils.to_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.is_undirected.html">gammagl.utils.is_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.degree.html">gammagl.utils.degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.add_self_loops.html">gammagl.utils.add_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.remove_self_loops.html">gammagl.utils.remove_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.mask_to_index.html">gammagl.utils.mask_to_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.index_to_mask.html">gammagl.utils.index_to_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.set_device.html">gammagl.utils.set_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.to_dense_batch.html">gammagl.utils.to_dense_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.k_hop_subgraph.html">gammagl.utils.k_hop_subgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.negative_sampling.html">gammagl.utils.negative_sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.to_scipy_sparse_matrix.html">gammagl.utils.to_scipy_sparse_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.read_embeddings.html">gammagl.utils.read_embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gammagl.utils.homophily.html">gammagl.utils.homophily</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GammaGL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api/gammagl.layers.html">gammagl.layers</a> &raquo;</li>
+        
+      <li>gammagl.layers.conv.GCNIIConv</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/generated/gammagl.layers.conv.GCNIIConv.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="gammagl-layers-conv-gcniiconv">
+<h1>gammagl.layers.conv.GCNIIConv<a class="headerlink" href="#gammagl-layers-conv-gcniiconv" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gammagl.layers.conv.GCNIIConv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GCNIIConv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gammagl/layers/conv/gcnii_conv.html#GCNIIConv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gammagl.layers.conv.GCNIIConv" title="Permalink to this definition">¶</a></dt>
+<dd><p>The graph convolutional operator with initial residual connections and
+identity mapping (GCNII) from the <a class="reference external" href="https://arxiv.org/abs/2007.02133">“Simple and Deep Graph Convolutional
+Networks”</a> paper</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{X}^{\prime} = \left( (1 - \alpha) \mathbf{\hat{P}}\mathbf{X} +
+\alpha \mathbf{X^{(0)}}\right) \left( (1 - \beta) \mathbf{I} + \beta
+\mathbf{\Theta} \right)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\mathbf{\hat{P}} = \mathbf{\hat{D}}^{-1/2} \mathbf{\hat{A}}
+\mathbf{\hat{D}}^{-1/2}\)</span>, where
+<span class="math notranslate nohighlight">\(\mathbf{\hat{A}} = \mathbf{A} + \mathbf{I}\)</span> denotes the adjacency
+matrix with inserted self-loops and
+<span class="math notranslate nohighlight">\(\hat{D}_{ii} = \sum_{j=0} \hat{A}_{ij}\)</span> its diagonal degree matrix,
+and <span class="math notranslate nohighlight">\(\mathbf{X}^{(0)}\)</span> being the initial feature representation.
+Here, <span class="math notranslate nohighlight">\(\alpha\)</span> models the strength of the initial residual
+connection, while <span class="math notranslate nohighlight">\(\beta\)</span> models the strength of the identity
+mapping.
+The adjacency matrix can include other values than <code class="xref py py-obj docutils literal notranslate"><span class="pre">1</span></code> representing
+edge weights via the optional <code class="xref py py-obj docutils literal notranslate"><span class="pre">edge_weight</span></code> tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Size of each input sample.</p></li>
+<li><p><strong>out_channels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Size of each outoput sample.</p></li>
+<li><p><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The strength of the initial residual connection
+<span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p><strong>beta</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The hyperparameter <span class="math notranslate nohighlight">\(\beta\)</span> to compute the strength of the identity mapping
+<span class="math notranslate nohighlight">\(\beta = \log \left( \frac{\beta}{\ell} + 1 \right)\)</span>.
+(default: <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>)</p></li>
+<li><p><strong>variant</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – use GCNII*, which can be fomuliazed as following: <span class="math notranslate nohighlight">\(\mathbf{H}^{(\ell+1)}= \sigma\left(\left(1-\alpha_{\ell}\right) \tilde{\mathbf{P}} \mathbf{H}^{(\ell)}\left(\left(1-\beta_{\ell}\right) \mathbf{I}_{n}+\beta_{\ell} \mathbf{W}_{1}^{(\ell)}\right)+\right.\\
+\left.+\alpha_{\ell} \mathbf{H}^{(0)}\left(\left(1-\beta_{\ell}\right) \mathbf{I}_{n}+\beta_{\ell} \mathbf{W}_{2}^{(\ell)}\right)\right)\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="gammagl.layers.conv.GCNIIConv.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_nodes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/gammagl/layers/conv/gcnii_conv.html#GCNIIConv.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#gammagl.layers.conv.GCNIIConv.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="gammagl.layers.conv.APPNPConv.html" class="btn btn-neutral float-right" title="gammagl.layers.conv.APPNPConv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="gammagl.layers.conv.GATV2Conv.html" class="btn btn-neutral float-left" title="gammagl.layers.conv.GATV2Conv" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, BUPT-GAMMA LAB.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

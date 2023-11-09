@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>gammagl.transforms.random_link_split &mdash; GammaGL 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> GammaGL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">NOTES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#system-requrements">System requrements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#backend">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#how-to-run">How to Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/introduction.html">Introduction by Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#data-handling-of-graphs">Data Handling of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#common-benchmark-datasets">Common Benchmark Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#mini-batches">Mini-batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_dataset.html">Creating Your Own Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-in-memory-datasets">Creating “In Memory Datasets”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-larger-datasets">Creating “Larger” Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_gnn.html">Creating Message Passing Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#the-messagepassing-base-class">The “MessagePassing” Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-gcn-layer">Implementing the GCN Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-edge-convolution">Implementing the Edge Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/batching.html">Advanced Mini-Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#pairs-of-graphs">Pairs of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#batching-along-new-dimensions">Batching Along New Dimensions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.data.html">gammagl.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BaseGraph.html">gammagl.data.BaseGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Graph.html">gammagl.data.Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BatchGraph.html">gammagl.data.BatchGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.HeteroGraph.html">gammagl.data.HeteroGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Dataset.html">gammagl.data.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.download_url.html">gammagl.data.download_url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.InMemoryDataset.html">gammagl.data.InMemoryDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_zip.html">gammagl.data.extract_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_tar.html">gammagl.data.extract_tar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.datasets.html">gammagl.datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Amazon.html">gammagl.datasets.Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Coauthor.html">gammagl.datasets.Coauthor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.TUDataset.html">gammagl.datasets.TUDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Planetoid.html">gammagl.datasets.Planetoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Reddit.html">gammagl.datasets.Reddit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.IMDB.html">gammagl.datasets.IMDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Entities.html">gammagl.datasets.Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Flickr.html">gammagl.datasets.Flickr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.HGBDataset.html">gammagl.datasets.HGBDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WikipediaNetwork.html">gammagl.datasets.WikipediaNetwork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WebKB.html">gammagl.datasets.WebKB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ModelNet40.html">gammagl.datasets.ModelNet40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.DBLP.html">gammagl.datasets.DBLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.CA_GrQc.html">gammagl.datasets.CA_GrQc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ZINC.html">gammagl.datasets.ZINC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.layers.html">gammagl.layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#convolutional-layers">Convolutional Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#pooling-layers">Pooling Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.loader.html">gammagl.loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.DataLoader.html">gammagl.loader.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.RandomWalk.html">gammagl.loader.RandomWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.transforms.html">gammagl.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.BaseTransform.html">gammagl.transforms.BaseTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.AddMetaPaths.html">gammagl.transforms.AddMetaPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.Compose.html">gammagl.transforms.Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.SIGN.html">gammagl.transforms.SIGN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.NormalizeFeatures.html">gammagl.transforms.NormalizeFeatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.DropEdge.html">gammagl.transforms.DropEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.RandomLinkSplit.html">gammagl.transforms.RandomLinkSplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.mask_test_edges.html">gammagl.transforms.mask_test_edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.sparse_to_tuple.html">gammagl.transforms.sparse_to_tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.utils.html">gammagl.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_A_norm_hat.html">gammagl.utils.calc_A_norm_hat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_gcn_norm.html">gammagl.utils.calc_gcn_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.segment_softmax.html">gammagl.utils.segment_softmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.sort_edge_index.html">gammagl.utils.sort_edge_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.coalesce.html">gammagl.utils.coalesce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_undirected.html">gammagl.utils.to_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.is_undirected.html">gammagl.utils.is_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.degree.html">gammagl.utils.degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.add_self_loops.html">gammagl.utils.add_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.remove_self_loops.html">gammagl.utils.remove_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.mask_to_index.html">gammagl.utils.mask_to_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.index_to_mask.html">gammagl.utils.index_to_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.set_device.html">gammagl.utils.set_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_dense_batch.html">gammagl.utils.to_dense_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.k_hop_subgraph.html">gammagl.utils.k_hop_subgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.negative_sampling.html">gammagl.utils.negative_sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_scipy_sparse_matrix.html">gammagl.utils.to_scipy_sparse_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.read_embeddings.html">gammagl.utils.read_embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.homophily.html">gammagl.utils.homophily</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GammaGL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>gammagl.transforms.random_link_split</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gammagl.transforms.random_link_split</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">copy</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">tensorlayerx</span> <span class="k">as</span> <span class="nn">tlx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">gammagl.data</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">HeteroGraph</span>
+<span class="kn">from</span> <span class="nn">gammagl.transforms</span> <span class="kn">import</span> <span class="n">BaseTransform</span>
+<span class="kn">from</span> <span class="nn">gammagl.typing</span> <span class="kn">import</span> <span class="n">EdgeType</span>
+<span class="kn">from</span> <span class="nn">gammagl.utils</span> <span class="kn">import</span> <span class="n">negative_sampling</span>
+
+
+<div class="viewcode-block" id="RandomLinkSplit"><a class="viewcode-back" href="../../../generated/gammagl.transforms.RandomLinkSplit.html#gammagl.transforms.RandomLinkSplit">[docs]</a><span class="k">class</span> <span class="nc">RandomLinkSplit</span><span class="p">(</span><span class="n">BaseTransform</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Performs an edge-level random split into training, validation and test</span>
+<span class="sd">    sets of a :class:`~gammagl.data.Graph` or a</span>
+<span class="sd">    :class:`~gammagl.data.HeteroGraph` object</span>
+<span class="sd">    (functional name: :obj:`random_link_split`).</span>
+<span class="sd">    The split is performed such that the training split does not include edges</span>
+<span class="sd">    in validation and test splits; and the validation split does not include</span>
+<span class="sd">    edges in the test split.</span>
+<span class="sd">    .. code-block::</span>
+<span class="sd">        from gammagl.transforms import RandomLinkSplit</span>
+<span class="sd">        transform = RandomLinkSplit(is_undirected=True)</span>
+<span class="sd">        train_data, val_data, test_data = transform(data)</span>
+<span class="sd">    Args:</span>
+<span class="sd">        num_val (int or float, optional): The number of validation edges.</span>
+<span class="sd">            If set to a floating-point value in :math:`[0, 1]`, it represents</span>
+<span class="sd">            the ratio of edges to include in the validation set.</span>
+<span class="sd">            (default: :obj:`0.1`)</span>
+<span class="sd">        num_test (int or float, optional): The number of test edges.</span>
+<span class="sd">            If set to a floating-point value in :math:`[0, 1]`, it represents</span>
+<span class="sd">            the ratio of edges to include in the test set.</span>
+<span class="sd">            (default: :obj:`0.2`)</span>
+<span class="sd">        is_undirected (bool): If set to :obj:`True`, the graph is assumed to be</span>
+<span class="sd">            undirected, and positive and negative samples will not leak</span>
+<span class="sd">            (reverse) edge connectivity across different splits. Note that this</span>
+<span class="sd">            only affects the graph split, label data will not be returned</span>
+<span class="sd">            undirected.</span>
+<span class="sd">            (default: :obj:`False`)</span>
+<span class="sd">        key (str, optional): The name of the attribute holding</span>
+<span class="sd">            ground-truth labels.</span>
+<span class="sd">            If :obj:`data[key]` does not exist, it will be automatically</span>
+<span class="sd">            created and represents a binary classification task</span>
+<span class="sd">            (:obj:`1` = edge, :obj:`0` = no edge).</span>
+<span class="sd">            If :obj:`data[key]` exists, it has to be a categorical label from</span>
+<span class="sd">            :obj:`0` to :obj:`num_classes - 1`.</span>
+<span class="sd">            After negative sampling, label :obj:`0` represents negative edges,</span>
+<span class="sd">            and labels :obj:`1` to :obj:`num_classes` represent the labels of</span>
+<span class="sd">            positive edges. (default: :obj:`&quot;edge_label&quot;`)</span>
+<span class="sd">        split_labels (bool, optional): If set to :obj:`True`, will split</span>
+<span class="sd">            positive and negative labels and save them in distinct attributes</span>
+<span class="sd">            :obj:`&quot;pos_edge_label&quot;` and :obj:`&quot;neg_edge_label&quot;`, respectively.</span>
+<span class="sd">            (default: :obj:`False`)</span>
+<span class="sd">        add_negative_train_samples (bool, optional): Whether to add negative</span>
+<span class="sd">            training samples for link prediction.</span>
+<span class="sd">            If the model already performs negative sampling, then the option</span>
+<span class="sd">            should be set to :obj:`False`.</span>
+<span class="sd">            Otherwise, the added negative samples will be the same across</span>
+<span class="sd">            training iterations unless negative sampling is performed again.</span>
+<span class="sd">            (default: :obj:`True`)</span>
+<span class="sd">        neg_sampling_ratio (float, optional): The ratio of sampled negative</span>
+<span class="sd">            edges to the number of positive edges. (default: :obj:`1.0`)</span>
+<span class="sd">        disjoint_train_ratio (int or float, optional): If set to a value</span>
+<span class="sd">            greater than :obj:`0.0`, training edges will not be shared for</span>
+<span class="sd">            message passing and supervision. Instead,</span>
+<span class="sd">            :obj:`disjoint_train_ratio` edges are used as ground-truth labels</span>
+<span class="sd">            for supervision during training. (default: :obj:`0.0`)</span>
+<span class="sd">        edge_types (Tuple[EdgeType] or List[EdgeType], optional): The edge</span>
+<span class="sd">            types used for performing edge-level splitting in case of</span>
+<span class="sd">            operating on :class:`~torch_geometric.data.HeteroData` objects.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+<span class="sd">        rev_edge_types (Tuple[EdgeType] or List[Tuple[EdgeType]], optional):</span>
+<span class="sd">            The reverse edge types of :obj:`edge_types` in case of operating</span>
+<span class="sd">            on :class:`~torch_geometric.data.HeteroData` objects.</span>
+<span class="sd">            This will ensure that edges of the reverse direction will be</span>
+<span class="sd">            split accordingly to prevent any data leakage.</span>
+<span class="sd">            Can be :obj:`None` in case no reverse connection exists.</span>
+<span class="sd">            (default: :obj:`None`)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">num_val</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="n">num_test</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">is_undirected</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;edge_label&#39;</span><span class="p">,</span>
+        <span class="n">split_labels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">add_negative_train_samples</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">neg_sampling_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">disjoint_train_ratio</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">edge_types</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">rev_edge_types</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edge_types</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rev_edge_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">rev_edge_types</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_types</span><span class="p">)</span>
+
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rev_edge_types</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_types</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">rev_edge_types</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_val</span> <span class="o">=</span> <span class="n">num_val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_test</span> <span class="o">=</span> <span class="n">num_test</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_undirected</span> <span class="o">=</span> <span class="n">is_undirected</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">split_labels</span> <span class="o">=</span> <span class="n">split_labels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_negative_train_samples</span> <span class="o">=</span> <span class="n">add_negative_train_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neg_sampling_ratio</span> <span class="o">=</span> <span class="n">neg_sampling_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">disjoint_train_ratio</span> <span class="o">=</span> <span class="n">disjoint_train_ratio</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span> <span class="o">=</span> <span class="n">edge_types</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rev_edge_types</span> <span class="o">=</span> <span class="n">rev_edge_types</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Graph</span><span class="p">,</span> <span class="n">HeteroGraph</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Graph</span><span class="p">,</span> <span class="n">HeteroGraph</span><span class="p">]:</span>
+        <span class="n">edge_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span>
+        <span class="n">rev_edge_types</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rev_edge_types</span>
+
+        <span class="n">train_data</span><span class="p">,</span> <span class="n">val_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">copy</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">copy</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">HeteroGraph</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">edge_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The &#39;RandomLinkSplit&#39; transform expects &#39;edge_types&#39; to&quot;</span>
+                    <span class="s2">&quot;be specified when operating on &#39;HeteroGraph&#39; objects&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">edge_types</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">edge_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge_types</span><span class="p">]</span>
+                <span class="n">rev_edge_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">rev_edge_types</span><span class="p">]</span>
+
+            <span class="n">stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="n">edge_types</span><span class="p">]</span>
+            <span class="n">train_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_data</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="n">edge_types</span><span class="p">]</span>
+            <span class="n">val_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">val_data</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="n">edge_types</span><span class="p">]</span>
+            <span class="n">test_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_data</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="n">edge_types</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rev_edge_types</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+            <span class="n">stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">_store</span><span class="p">]</span>
+            <span class="n">train_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_data</span><span class="o">.</span><span class="n">_store</span><span class="p">]</span>
+            <span class="n">val_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">val_data</span><span class="o">.</span><span class="n">_store</span><span class="p">]</span>
+            <span class="n">test_stores</span> <span class="o">=</span> <span class="p">[</span><span class="n">test_data</span><span class="o">.</span><span class="n">_store</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">stores</span><span class="p">,</span> <span class="n">train_stores</span><span class="p">,</span> <span class="n">val_stores</span><span class="p">,</span> <span class="n">test_stores</span><span class="p">,</span>
+                        <span class="n">rev_edge_types</span><span class="p">):</span>
+            <span class="n">store</span><span class="p">,</span> <span class="n">train_store</span><span class="p">,</span> <span class="n">val_store</span><span class="p">,</span> <span class="n">test_store</span><span class="p">,</span> <span class="n">rev_edge_type</span> <span class="o">=</span> <span class="n">item</span>
+
+            <span class="n">is_undirected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_undirected</span>
+            <span class="n">is_undirected</span> <span class="o">&amp;=</span> <span class="ow">not</span> <span class="n">store</span><span class="o">.</span><span class="n">is_bipartite</span><span class="p">()</span>
+            <span class="n">is_undirected</span> <span class="o">&amp;=</span> <span class="p">(</span><span class="n">rev_edge_type</span> <span class="ow">is</span> <span class="kc">None</span>
+                              <span class="ow">or</span> <span class="n">store</span><span class="o">.</span><span class="n">_key</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="n">rev_edge_type</span><span class="p">]</span><span class="o">.</span><span class="n">_key</span><span class="p">)</span>
+
+            <span class="n">edge_index</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">edge_index</span>
+            <span class="k">if</span> <span class="n">is_undirected</span><span class="p">:</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">edge_index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">edge_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">perm</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">mask_select</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">mask</span><span class="p">)</span>
+                <span class="n">numel</span> <span class="o">=</span> <span class="n">perm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">perm</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">perm</span><span class="p">,</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">numel</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">numel</span> <span class="o">=</span> <span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">perm</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">numel</span><span class="p">))</span>
+
+            <span class="n">num_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_val</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_val</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">num_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_val</span> <span class="o">*</span> <span class="n">numel</span><span class="p">)</span>
+            <span class="n">num_test</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_test</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_test</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">num_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_test</span> <span class="o">*</span> <span class="n">numel</span><span class="p">)</span>
+
+            <span class="n">num_train</span> <span class="o">=</span> <span class="n">numel</span> <span class="o">-</span> <span class="n">num_val</span> <span class="o">-</span> <span class="n">num_test</span>
+
+            <span class="k">if</span> <span class="n">num_train</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Insufficient number of edges for training&quot;</span><span class="p">)</span>
+
+            <span class="n">train_edges</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[:</span><span class="n">num_train</span><span class="p">]</span>
+            <span class="n">val_edges</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[</span><span class="n">num_train</span><span class="p">:</span><span class="n">num_train</span> <span class="o">+</span> <span class="n">num_val</span><span class="p">]</span>
+            <span class="n">test_edges</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[</span><span class="n">num_train</span> <span class="o">+</span> <span class="n">num_val</span><span class="p">:]</span>
+            <span class="n">train_val_edges</span> <span class="o">=</span> <span class="n">perm</span><span class="p">[:</span><span class="n">num_train</span> <span class="o">+</span> <span class="n">num_val</span><span class="p">]</span>
+
+            <span class="n">num_disjoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">disjoint_train_ratio</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">num_disjoint</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+                <span class="n">num_disjoint</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_disjoint</span> <span class="o">*</span> <span class="n">num_train</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_train</span> <span class="o">-</span> <span class="n">num_disjoint</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Insufficient number of edges for training&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Create data splits:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">train_store</span><span class="p">,</span> <span class="n">train_edges</span><span class="p">[</span><span class="n">num_disjoint</span><span class="p">:],</span> <span class="n">is_undirected</span><span class="p">,</span>
+                        <span class="n">rev_edge_type</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">val_store</span><span class="p">,</span> <span class="n">train_edges</span><span class="p">,</span> <span class="n">is_undirected</span><span class="p">,</span> <span class="n">rev_edge_type</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">test_store</span><span class="p">,</span> <span class="n">train_val_edges</span><span class="p">,</span> <span class="n">is_undirected</span><span class="p">,</span>
+                        <span class="n">rev_edge_type</span><span class="p">)</span>
+
+            <span class="c1"># Create negative samples:</span>
+            <span class="n">num_neg_train</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_negative_train_samples</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">num_disjoint</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">num_neg_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_disjoint</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_sampling_ratio</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">num_neg_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_train</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_sampling_ratio</span><span class="p">)</span>
+            <span class="n">num_neg_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_val</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_sampling_ratio</span><span class="p">)</span>
+            <span class="n">num_neg_test</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_test</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_sampling_ratio</span><span class="p">)</span>
+
+            <span class="n">num_neg</span> <span class="o">=</span> <span class="n">num_neg_train</span> <span class="o">+</span> <span class="n">num_neg_val</span> <span class="o">+</span> <span class="n">num_neg_test</span>
+
+            <span class="n">size</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">store</span><span class="o">.</span><span class="n">_key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">store</span><span class="o">.</span><span class="n">_key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">store</span><span class="o">.</span><span class="n">_key</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">neg_edge_index</span> <span class="o">=</span> <span class="n">negative_sampling</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span>
+                                               <span class="n">num_neg_samples</span><span class="o">=</span><span class="n">num_neg</span><span class="p">,</span>
+                                               <span class="n">method</span><span class="o">=</span><span class="s1">&#39;sparse&#39;</span><span class="p">)</span>
+
+            <span class="c1"># Adjust ratio if not enough negative edges exist</span>
+            <span class="k">if</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">num_neg</span><span class="p">:</span>
+                <span class="n">num_neg_found</span> <span class="o">=</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">ratio</span> <span class="o">=</span> <span class="n">num_neg_found</span> <span class="o">/</span> <span class="n">num_neg</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;There are not enough negative edges to satisfy &quot;</span>
+                    <span class="s2">&quot;the provided sampling ratio. The ratio will be &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;adjusted to </span><span class="si">{</span><span class="n">ratio</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+                <span class="n">num_neg_train</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">num_neg_train</span> <span class="o">/</span> <span class="n">num_neg</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_neg_found</span><span class="p">)</span>
+                <span class="n">num_neg_val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">num_neg_val</span> <span class="o">/</span> <span class="n">num_neg</span><span class="p">)</span> <span class="o">*</span> <span class="n">num_neg_found</span><span class="p">)</span>
+                <span class="n">num_neg_test</span> <span class="o">=</span> <span class="n">num_neg_found</span> <span class="o">-</span> <span class="n">num_neg_train</span> <span class="o">-</span> <span class="n">num_neg_val</span>
+
+            <span class="c1"># Create labels:</span>
+            <span class="k">if</span> <span class="n">num_disjoint</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">train_edges</span> <span class="o">=</span> <span class="n">train_edges</span><span class="p">[:</span><span class="n">num_disjoint</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_create_label</span><span class="p">(</span>
+                <span class="n">store</span><span class="p">,</span>
+                <span class="n">train_edges</span><span class="p">,</span>
+                <span class="n">neg_edge_index</span><span class="p">[:,</span> <span class="n">num_neg_val</span> <span class="o">+</span> <span class="n">num_neg_test</span><span class="p">:],</span>
+                <span class="n">out</span><span class="o">=</span><span class="n">train_store</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_create_label</span><span class="p">(</span>
+                <span class="n">store</span><span class="p">,</span>
+                <span class="n">val_edges</span><span class="p">,</span>
+                <span class="n">neg_edge_index</span><span class="p">[:,</span> <span class="p">:</span><span class="n">num_neg_val</span><span class="p">],</span>
+                <span class="n">out</span><span class="o">=</span><span class="n">val_store</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_create_label</span><span class="p">(</span>
+                <span class="n">store</span><span class="p">,</span>
+                <span class="n">test_edges</span><span class="p">,</span>
+                <span class="n">neg_edge_index</span><span class="p">[:,</span> <span class="n">num_neg_val</span><span class="p">:</span><span class="n">num_neg_val</span> <span class="o">+</span> <span class="n">num_neg_test</span><span class="p">],</span>
+                <span class="n">out</span><span class="o">=</span><span class="n">test_store</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">val_data</span><span class="p">,</span> <span class="n">test_data</span>
+
+    <span class="k">def</span> <span class="nf">_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">is_undirected</span><span class="p">,</span> <span class="n">rev_edge_type</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">store</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;edge_index&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">store</span><span class="o">.</span><span class="n">is_edge_attr</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">is_undirected</span><span class="p">:</span>
+                    <span class="n">value</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_undirected</span><span class="p">:</span>
+            <span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">store</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span>
+
+        <span class="k">if</span> <span class="n">rev_edge_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rev_store</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">_parent</span><span class="p">()[</span><span class="n">rev_edge_type</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">rev_store</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">rev_store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>  <span class="c1"># We delete all outdated attributes.</span>
+                <span class="k">elif</span> <span class="n">key</span> <span class="o">==</span> <span class="s1">&#39;edge_index&#39;</span><span class="p">:</span>
+                    <span class="n">rev_store</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rev_store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">store</span>
+
+    <span class="k">def</span> <span class="nf">_create_label</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">store</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">neg_edge_index</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+
+        <span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">):</span>
+            <span class="n">edge_label</span> <span class="o">=</span> <span class="n">store</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">edge_label</span> <span class="o">=</span> <span class="n">edge_label</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="n">edge_label</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">store</span><span class="o">.</span><span class="n">edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">edge_label</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">):</span>
+                <span class="nb">delattr</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">edge_label</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],))</span>
+
+        <span class="k">if</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">neg_edge_label</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">edge_label</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">edge_label</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">split_labels</span><span class="p">:</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;pos_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_label</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;pos_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_index</span>
+            <span class="k">if</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;neg_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neg_edge_label</span>
+                <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;neg_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">neg_edge_index</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">neg_edge_index</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">edge_label</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">edge_label</span><span class="p">,</span> <span class="n">neg_edge_label</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">neg_edge_index</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">out</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_label</span>
+            <span class="n">out</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="si">}</span><span class="s1">_index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_index</span>
+
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">(num_val=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_val</span><span class="si">}</span><span class="s1">, &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;num_test=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_test</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, BUPT-GAMMA LAB.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

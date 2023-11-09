@@ -1,0 +1,939 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>gammagl.data.heterograph &mdash; GammaGL 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> GammaGL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">NOTES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#system-requrements">System requrements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#backend">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#how-to-run">How to Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/introduction.html">Introduction by Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#data-handling-of-graphs">Data Handling of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#common-benchmark-datasets">Common Benchmark Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#mini-batches">Mini-batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_dataset.html">Creating Your Own Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-in-memory-datasets">Creating “In Memory Datasets”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-larger-datasets">Creating “Larger” Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_gnn.html">Creating Message Passing Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#the-messagepassing-base-class">The “MessagePassing” Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-gcn-layer">Implementing the GCN Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-edge-convolution">Implementing the Edge Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/batching.html">Advanced Mini-Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#pairs-of-graphs">Pairs of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#batching-along-new-dimensions">Batching Along New Dimensions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.data.html">gammagl.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BaseGraph.html">gammagl.data.BaseGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Graph.html">gammagl.data.Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BatchGraph.html">gammagl.data.BatchGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.HeteroGraph.html">gammagl.data.HeteroGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Dataset.html">gammagl.data.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.download_url.html">gammagl.data.download_url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.InMemoryDataset.html">gammagl.data.InMemoryDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_zip.html">gammagl.data.extract_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_tar.html">gammagl.data.extract_tar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.datasets.html">gammagl.datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Amazon.html">gammagl.datasets.Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Coauthor.html">gammagl.datasets.Coauthor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.TUDataset.html">gammagl.datasets.TUDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Planetoid.html">gammagl.datasets.Planetoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Reddit.html">gammagl.datasets.Reddit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.IMDB.html">gammagl.datasets.IMDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Entities.html">gammagl.datasets.Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Flickr.html">gammagl.datasets.Flickr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.HGBDataset.html">gammagl.datasets.HGBDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WikipediaNetwork.html">gammagl.datasets.WikipediaNetwork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WebKB.html">gammagl.datasets.WebKB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ModelNet40.html">gammagl.datasets.ModelNet40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.DBLP.html">gammagl.datasets.DBLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.CA_GrQc.html">gammagl.datasets.CA_GrQc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ZINC.html">gammagl.datasets.ZINC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.layers.html">gammagl.layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#convolutional-layers">Convolutional Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#pooling-layers">Pooling Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.loader.html">gammagl.loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.DataLoader.html">gammagl.loader.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.RandomWalk.html">gammagl.loader.RandomWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.transforms.html">gammagl.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.BaseTransform.html">gammagl.transforms.BaseTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.AddMetaPaths.html">gammagl.transforms.AddMetaPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.Compose.html">gammagl.transforms.Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.SIGN.html">gammagl.transforms.SIGN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.NormalizeFeatures.html">gammagl.transforms.NormalizeFeatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.DropEdge.html">gammagl.transforms.DropEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.RandomLinkSplit.html">gammagl.transforms.RandomLinkSplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.mask_test_edges.html">gammagl.transforms.mask_test_edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.sparse_to_tuple.html">gammagl.transforms.sparse_to_tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.utils.html">gammagl.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_A_norm_hat.html">gammagl.utils.calc_A_norm_hat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_gcn_norm.html">gammagl.utils.calc_gcn_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.segment_softmax.html">gammagl.utils.segment_softmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.sort_edge_index.html">gammagl.utils.sort_edge_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.coalesce.html">gammagl.utils.coalesce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_undirected.html">gammagl.utils.to_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.is_undirected.html">gammagl.utils.is_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.degree.html">gammagl.utils.degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.add_self_loops.html">gammagl.utils.add_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.remove_self_loops.html">gammagl.utils.remove_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.mask_to_index.html">gammagl.utils.mask_to_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.index_to_mask.html">gammagl.utils.index_to_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.set_device.html">gammagl.utils.set_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_dense_batch.html">gammagl.utils.to_dense_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.k_hop_subgraph.html">gammagl.utils.k_hop_subgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.negative_sampling.html">gammagl.utils.negative_sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_scipy_sparse_matrix.html">gammagl.utils.to_scipy_sparse_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.read_embeddings.html">gammagl.utils.read_embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.homophily.html">gammagl.utils.homophily</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GammaGL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>gammagl.data.heterograph</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gammagl.data.heterograph</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">NamedTuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">tensorlayerx</span> <span class="k">as</span> <span class="nn">tlx</span>
+<span class="kn">from</span> <span class="nn">gammagl.data.graph</span> <span class="kn">import</span> <span class="n">BaseGraph</span><span class="p">,</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">size_repr</span>
+<span class="kn">from</span> <span class="nn">gammagl.data.storage</span> <span class="kn">import</span> <span class="n">BaseStorage</span><span class="p">,</span> <span class="n">EdgeStorage</span><span class="p">,</span> <span class="n">NodeStorage</span>
+<span class="kn">from</span> <span class="nn">gammagl.typing</span> <span class="kn">import</span> <span class="n">EdgeType</span><span class="p">,</span> <span class="n">NodeType</span><span class="p">,</span> <span class="n">QueryType</span>
+<span class="kn">from</span> <span class="nn">gammagl.utils</span> <span class="kn">import</span> <span class="n">is_undirected</span>
+
+<span class="n">NodeOrEdgeType</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="n">EdgeType</span><span class="p">]</span>
+<span class="n">NodeOrEdgeStorage</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">NodeStorage</span><span class="p">,</span> <span class="n">EdgeStorage</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="HeteroGraph"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph">[docs]</a><span class="k">class</span> <span class="nc">HeteroGraph</span><span class="p">(</span><span class="n">BaseGraph</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;A data object describing a heterogeneous graph, holding multiple node</span>
+<span class="sd">    and/or edge types in disjunct storage objects.</span>
+<span class="sd">    Storage objects can hold either node-level, link-level or graph-level</span>
+<span class="sd">    attributes.</span>
+<span class="sd">    In general, :class:`~gammagl.data.HeteroGraph` tries to mimic the</span>
+<span class="sd">    behaviour of a regular **nested** Python dictionary.</span>
+<span class="sd">    In addition, it provides useful functionality for analyzing graph</span>
+<span class="sd">    structures, and provides basic tensor functionalities.</span>
+<span class="sd">    </span>
+<span class="sd">    .. code:: python</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; from gammagl.data import HeteroGraph</span>
+<span class="sd">        &gt;&gt;&gt; import tensorlayerx as tlx</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">        # Create two node types &quot;paper&quot; and &quot;author&quot; holding a feature matrix:</span>
+<span class="sd">        &gt;&gt;&gt; num_papers = 6</span>
+<span class="sd">        &gt;&gt;&gt; num_paper_features = 16</span>
+<span class="sd">        &gt;&gt;&gt; num_authors = 3</span>
+<span class="sd">        &gt;&gt;&gt; num_authors_features = 8</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;paper&#39;].x = tlx.random_uniform((num_papers, num_paper_features))</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;author&#39;].x =  tlx.random_uniform((num_authors, num_authors_features))</span>
+<span class="sd">        # Create an edge type &quot;(author, writes, paper)&quot; and building the</span>
+<span class="sd">        # graph connectivity:</span>
+<span class="sd">        &gt;&gt;&gt; edge = tlx.convert_to_tensor([</span>
+<span class="sd">        ... [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],</span>
+<span class="sd">        ... [0, 1, 3, 5, 0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]</span>
+<span class="sd">        ])</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;].edge_index = edge</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;paper&#39;].num_nodes</span>
+<span class="sd">        3</span>
+<span class="sd">        &gt;&gt;&gt; data.num_nodes</span>
+<span class="sd">        9</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;].num_edges</span>
+<span class="sd">        15</span>
+<span class="sd">        &gt;&gt;&gt; data.num_edges</span>
+<span class="sd">        15</span>
+<span class="sd">        </span>
+<span class="sd">    Note that there exists multiple ways to create a heterogeneous graph data,</span>
+<span class="sd">    *e.g.*:</span>
+<span class="sd">    * To initialize a node of type :obj:`&quot;paper&quot;` holding a node feature matrix :obj:`x_paper` named :obj:`x`:</span>
+
+<span class="sd">    .. code:: python</span>
+
+<span class="sd">        &gt;&gt;&gt; from gammagl.data import HeteroGraph</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;paper&#39;].x = x_paper</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph(paper={ &#39;x&#39;: x_paper })</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph({&#39;paper&#39;: { &#39;x&#39;: x_paper }})</span>
+
+<span class="sd">    * To initialize an edge from source node type :obj:`&quot;author&quot;` to</span>
+<span class="sd">      destination node type :obj:`&quot;paper&quot;` with relation type :obj:`&quot;writes&quot;`</span>
+<span class="sd">      holding a graph connectivity matrix :obj:`edge_index_author_paper` named</span>
+<span class="sd">      :obj:`edge_index`:</span>
+
+<span class="sd">      .. code:: python</span>
+
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">        &gt;&gt;&gt; data[&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;].edge_index = edge_index_author_paper</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph(author__writes__paper={</span>
+<span class="sd">            &#39;edge_index&#39;: edge_index_author_paper</span>
+<span class="sd">        })</span>
+<span class="sd">        &gt;&gt;&gt; data = HeteroGraph({</span>
+<span class="sd">            (&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;):</span>
+<span class="sd">            { &#39;edge_index&#39;: edge_index_author_paper }</span>
+<span class="sd">        })</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DEFAULT_REL</span> <span class="o">=</span> <span class="s1">&#39;to&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_mapping</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_global_store&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">BaseStorage</span><span class="p">(</span><span class="n">_parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_node_store_dict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_edge_store_dict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">((</span><span class="n">_mapping</span> <span class="ow">or</span> <span class="p">{})</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="s1">&#39;__&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">):</span>
+                <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="c1"># `data.*_dict` =&gt; Link to node and edge stores.</span>
+        <span class="c1"># `data.*` =&gt; Link to the `_global_store`.</span>
+        <span class="c1"># Using `data.*_dict` is the same as using `collect()` for collecting</span>
+        <span class="c1"># nodes and edges features.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;_dict$&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">collect</span><span class="p">(</span><span class="n">key</span><span class="p">[:</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; has no &quot;</span>
+                             <span class="sa">f</span><span class="s2">&quot;attribute &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="c1"># NOTE: We aim to prevent duplicates in node or edge types.</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; is already present as a node type&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; is already present as an edge type&quot;</span><span class="p">)</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="nb">delattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">QueryType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="c1"># `data[*]` =&gt; Link to either `_global_store`, _node_store_dict` or</span>
+        <span class="c1"># `_edge_store_dict`.</span>
+        <span class="c1"># If neither is present, we create a new `Storage` object for the given</span>
+        <span class="c1"># node/edge-type.</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_canonical</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_edge_store</span><span class="p">(</span><span class="o">*</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_node_store</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; is already present as a node type&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39; is already present as an edge type&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">QueryType</span><span class="p">]):</span>
+        <span class="c1"># `del data[*]` =&gt; Link to `_node_store_dict` or `_edge_store_dict`.</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_canonical</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_global_store&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_node_store_dict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">store</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_edge_store_dict&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">store</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">info1</span> <span class="o">=</span> <span class="p">[</span><span class="n">size_repr</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">info2</span> <span class="o">=</span> <span class="p">[</span><span class="n">size_repr</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">info3</span> <span class="o">=</span> <span class="p">[</span><span class="n">size_repr</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="s1">&#39;,</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">info1</span> <span class="o">+</span> <span class="n">info2</span> <span class="o">+</span> <span class="n">info3</span><span class="p">)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="n">info</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">info</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">info</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">(</span><span class="si">{</span><span class="n">info</span><span class="si">}</span><span class="s1">)&#39;</span>
+
+    <span class="k">def</span> <span class="nf">stores_as</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="s1">&#39;Hetero&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">node_type</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">node_types</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_node_store</span><span class="p">(</span><span class="n">node_type</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">edge_types</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_edge_store</span><span class="p">(</span><span class="o">*</span><span class="n">edge_type</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseStorage</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of all storages of the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_stores</span><span class="p">)</span> <span class="o">+</span>
+                <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_stores</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">node_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeType</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of all node types of the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">node_stores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeStorage</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of all node storages of the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">edge_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of all edge types of the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">edge_stores</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">EdgeStorage</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of all edge storages of the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<div class="viewcode-block" id="HeteroGraph.node_items"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.node_items">[docs]</a>    <span class="k">def</span> <span class="nf">node_items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="n">NodeStorage</span><span class="p">]]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of node type and node storage pairs.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.edge_items"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.edge_items">[docs]</a>    <span class="k">def</span> <span class="nf">edge_items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">,</span> <span class="n">EdgeStorage</span><span class="p">]]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns a list of edge type and edge storage pairs.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.to_dict"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.to_namedtuple"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_namedtuple">[docs]</a>    <span class="k">def</span> <span class="nf">to_namedtuple</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NamedTuple</span><span class="p">:</span>
+        <span class="n">field_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">field_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">field_names</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="s1">&#39;__&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)</span> <span class="k">else</span> <span class="n">key</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span>
+        <span class="p">]</span>
+        <span class="n">field_values</span> <span class="o">+=</span> <span class="p">[</span>
+            <span class="n">store</span><span class="o">.</span><span class="n">to_namedtuple</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_stores</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_stores</span>
+        <span class="p">]</span>
+        <span class="n">DataTuple</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;DataTuple&#39;</span><span class="p">,</span> <span class="n">field_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">DataTuple</span><span class="p">(</span><span class="o">*</span><span class="n">field_values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.__cat_dim__"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.__cat_dim__">[docs]</a>    <span class="k">def</span> <span class="nf">__cat_dim__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+                    <span class="n">store</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NodeOrEdgeStorage</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="c1"># if isinstance(value, SparseTensor) and &#39;adj&#39; in key:</span>
+        <span class="c1">#     return (0, 1)</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;index&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="ow">or</span> <span class="s1">&#39;face&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.__inc__"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.__inc__">[docs]</a>    <span class="k">def</span> <span class="nf">__inc__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+                <span class="n">store</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">NodeOrEdgeStorage</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;batch&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">EdgeStorage</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;index&#39;</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">size</span><span class="p">()),</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the number of nodes in the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">num_nodes</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_node_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the number of features per node type in the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">store</span><span class="o">.</span><span class="n">num_node_features</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the number of features per node type in the graph.</span>
+<span class="sd">        Alias for :py:attr:`~num_node_features`.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_node_features</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">num_edge_features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the number of features per edge type in the graph.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">store</span><span class="o">.</span><span class="n">num_edge_features</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="HeteroGraph.is_undirected"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.is_undirected">[docs]</a>    <span class="k">def</span> <span class="nf">is_undirected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns :obj:`True` if graph edges are undirected.&quot;&quot;&quot;</span>
+        <span class="n">edge_index</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">to_homogeneous_edge_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">is_undirected</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">num_nodes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">adj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scipy_fmt</span><span class="o">=</span><span class="s1">&#39;coo&#39;</span><span class="p">,</span> <span class="n">etype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">etype</span><span class="p">]</span><span class="o">.</span><span class="n">edge_index</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">etype</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">etype</span><span class="p">]</span><span class="o">.</span><span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># x = np.ones(self[etype].num_edges)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">sp_coo</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">coo_matrix</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">scipy_fmt</span> <span class="o">==</span> <span class="s1">&#39;coo&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sp_coo</span>
+        <span class="k">elif</span> <span class="n">scipy_fmt</span> <span class="o">==</span> <span class="s1">&#39;csr&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sp_coo</span><span class="o">.</span><span class="n">tocsr</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">sp_coo</span><span class="o">.</span><span class="n">tocsc</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># TODO</span>
+
+    <span class="k">def</span> <span class="nf">tensor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">store_dict</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_to_tensor</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<div class="viewcode-block" id="HeteroGraph.numpy"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.numpy">[docs]</a>    <span class="k">def</span> <span class="nf">numpy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert the Graph into numpy format.</span>
+<span class="sd">        In numpy format, the graph edges and node features are in numpy.ndarray format.</span>
+<span class="sd">        But you can&#39;t use send and recv in numpy graph.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        inplace: bool</span>
+<span class="sd">            (Default True) Whether to convert the graph into numpy inplace.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">store_dict</span> <span class="ow">in</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_to_numpy</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># TODO</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+    <span class="c1">###########################################################################</span>
+
+    <span class="k">def</span> <span class="nf">_to_canonical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">QueryType</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">NodeOrEdgeType</span><span class="p">:</span>
+        <span class="c1"># Converts a given `QueryType` to its &quot;canonical type&quot;:</span>
+        <span class="c1"># 1. `relation_type` will get mapped to the unique</span>
+        <span class="c1">#    `(src_node_type, relation_type, dst_node_type)` tuple.</span>
+        <span class="c1"># 2. `(src_node_type, dst_node_type)` will get mapped to the unique</span>
+        <span class="c1">#    `(src_node_type, *, dst_node_type)` tuple, and</span>
+        <span class="c1">#    `(src_node_type, &#39;to&#39;, dst_node_type)` otherwise.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">node_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span> <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">args</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="n">node_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">args</span>
+
+            <span class="c1"># Try to map to edge type based on unique relation type:</span>
+            <span class="n">edge_types</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span> <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">args</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="n">edge_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">args</span>
+
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="c1"># Try to find the unique source/destination node tuple:</span>
+            <span class="n">edge_types</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span>
+                <span class="k">if</span> <span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">key</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="n">edge_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">args</span>
+            <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_types</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEFAULT_REL</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="k">return</span> <span class="n">args</span>
+
+        <span class="k">return</span> <span class="n">args</span>
+
+<div class="viewcode-block" id="HeteroGraph.metadata"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.metadata">[docs]</a>    <span class="k">def</span> <span class="nf">metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">NodeType</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">]]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Returns the heterogeneous meta-data, *i.e.* its node and edge</span>
+<span class="sd">        types.</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">            &gt;&gt;&gt; data[&#39;paper&#39;].x = ...</span>
+<span class="sd">            &gt;&gt;&gt; data[&#39;author&#39;].x = ...</span>
+<span class="sd">            &gt;&gt;&gt; data[&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;].edge_index = ...</span>
+<span class="sd">            &gt;&gt;&gt; print(data.metadata())</span>
+<span class="sd">            ([&#39;paper&#39;, &#39;author&#39;], [(&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;)])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_types</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.collect"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.collect">[docs]</a>    <span class="k">def</span> <span class="nf">collect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeOrEdgeType</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Collects the attribute :attr:`key` from all node and edge types.</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">            &gt;&gt;&gt; data[&#39;paper&#39;].x = ...</span>
+<span class="sd">            &gt;&gt;&gt; data[&#39;author&#39;].x = ...</span>
+<span class="sd">            &gt;&gt;&gt; print(data.collect(&#39;x&#39;))</span>
+<span class="sd">            { &#39;paper&#39;: ..., &#39;author&#39;: ...}</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            This is equivalent to writing :obj:`data.x_dict`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mapping</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">subtype</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+                <span class="n">mapping</span><span class="p">[</span><span class="n">subtype</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">store</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">mapping</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.get_node_store"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.get_node_store">[docs]</a>    <span class="k">def</span> <span class="nf">get_node_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">NodeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NodeStorage</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Gets the :class:`~gammagl.data.storage.NodeStorage` object</span>
+<span class="sd">        of a particular node type :attr:`key`.</span>
+<span class="sd">        If the storage is not present yet, will create a new</span>
+<span class="sd">        :class:`gammagl.data.storage.NodeStorage` object for the given</span>
+<span class="sd">        node type.</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">            &gt;&gt;&gt; node_storage = data.get_node_store(&#39;paper&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">NodeStorage</span><span class="p">(</span><span class="n">_parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.get_edge_store"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.get_edge_store">[docs]</a>    <span class="k">def</span> <span class="nf">get_edge_store</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">src</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EdgeStorage</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Gets the :class:`~gammagl.data.storage.EdgeStorage` object</span>
+<span class="sd">        of a particular edge type given by the tuple :obj:`(src, rel, dst)`.</span>
+<span class="sd">        If the storage is not present yet, will create a new</span>
+<span class="sd">        :class:`gammagl.data.storage.EdgeStorage` object for the given</span>
+<span class="sd">        edge type.</span>
+
+<span class="sd">        .. code:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; data = HeteroGraph()</span>
+<span class="sd">            &gt;&gt;&gt; edge_storage = data.get_edge_store(&#39;author&#39;, &#39;writes&#39;, &#39;paper&#39;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">rel</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">EdgeStorage</span><span class="p">(</span><span class="n">_parent</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">_key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.rename"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.rename">[docs]</a>    <span class="k">def</span> <span class="nf">rename</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">NodeType</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="n">NodeType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;HeteroGraph&#39;</span><span class="p">:</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Renames the node type :obj:`name` to :obj:`new_name` in-place.&quot;&quot;&quot;</span>
+        <span class="n">node_store</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">node_store</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">new_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="p">[</span><span class="n">new_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_store</span>
+
+        <span class="k">for</span> <span class="n">edge_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_types</span><span class="p">:</span>
+            <span class="n">src</span><span class="p">,</span> <span class="n">rel</span><span class="p">,</span> <span class="n">dst</span> <span class="o">=</span> <span class="n">edge_type</span>
+            <span class="k">if</span> <span class="n">src</span> <span class="o">==</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">dst</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">edge_store</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">edge_type</span><span class="p">)</span>
+                <span class="n">src</span> <span class="o">=</span> <span class="n">new_name</span> <span class="k">if</span> <span class="n">src</span> <span class="o">==</span> <span class="n">name</span> <span class="k">else</span> <span class="n">src</span>
+                <span class="n">dst</span> <span class="o">=</span> <span class="n">new_name</span> <span class="k">if</span> <span class="n">dst</span> <span class="o">==</span> <span class="n">name</span> <span class="k">else</span> <span class="n">dst</span>
+                <span class="n">edge_type</span> <span class="o">=</span> <span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">rel</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+                <span class="n">edge_store</span><span class="o">.</span><span class="n">_key</span> <span class="o">=</span> <span class="n">edge_type</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge_store</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="HeteroGraph.to_homogeneous"><a class="viewcode-back" href="../../../generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_homogeneous">[docs]</a>    <span class="k">def</span> <span class="nf">to_homogeneous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node_attrs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                       <span class="n">edge_attrs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                       <span class="n">add_node_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                       <span class="n">add_edge_type</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Graph</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Converts a :class:`~gammagl.data.HeteroGraph` object to a</span>
+<span class="sd">        homogeneous :class:`~gammagl.data.Graph` object.</span>
+<span class="sd">        By default, all features with same feature dimensionality across</span>
+<span class="sd">        different types will be merged into a single representation, unless</span>
+<span class="sd">        otherwise specified via the :obj:`node_attrs` and :obj:`edge_attrs`</span>
+<span class="sd">        arguments.</span>
+
+<span class="sd">        Furthermore, attributes named :obj:`node_type` and :obj:`edge_type`</span>
+<span class="sd">        will be added to the returned :class:`~gammagl.data.Graph`</span>
+<span class="sd">        object, denoting node-level and edge-level vectors holding the</span>
+<span class="sd">        node and edge type as integers, respectively.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            node_attrs (List[str], optional): The node features to combine</span>
+<span class="sd">                across all node types. These node features need to be of the</span>
+<span class="sd">                same feature dimensionality. If set to :obj:`None`, will</span>
+<span class="sd">                automatically determine which node features to combine.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            edge_attrs (List[str], optional): The edge features to combine</span>
+<span class="sd">                across all edge types. These edge features need to be of the</span>
+<span class="sd">                same feature dimensionality. If set to :obj:`None`, will</span>
+<span class="sd">                automatically determine which edge features to combine.</span>
+<span class="sd">                (default: :obj:`None`)</span>
+<span class="sd">            add_node_type (bool, optional): If set to :obj:`False`, will not</span>
+<span class="sd">                add the node-level vector :obj:`node_type` to the returned</span>
+<span class="sd">                :class:`~gammagl.data.Graph` object.</span>
+<span class="sd">                (default: :obj:`True`)</span>
+<span class="sd">            add_edge_type (bool, optional): If set to :obj:`False`, will not</span>
+<span class="sd">                add the edge-level vector :obj:`edge_type` to the returned</span>
+<span class="sd">                :class:`~gammagl.data.Graph` object.</span>
+<span class="sd">                (default: :obj:`True`)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">_consistent_size</span><span class="p">(</span><span class="n">stores</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseStorage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+            <span class="n">sizes_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">stores</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">store</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;edge_index&#39;</span><span class="p">,</span> <span class="s1">&#39;adj_t&#39;</span><span class="p">]:</span>
+                        <span class="k">continue</span>
+                    <span class="k">if</span> <span class="n">tlx</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                        <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cat_dim__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">store</span><span class="p">)</span>
+                        <span class="n">size</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">get_tensor_shape</span><span class="p">(</span><span class="n">value</span><span class="p">)[:</span><span class="n">dim</span><span class="p">]</span> <span class="o">+</span> <span class="n">tlx</span><span class="o">.</span><span class="n">get_tensor_shape</span><span class="p">(</span><span class="n">value</span><span class="p">)[</span><span class="n">dim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+                        <span class="n">sizes_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">sizes</span> <span class="ow">in</span> <span class="n">sizes_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">stores</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">sizes</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="p">]</span>
+
+        <span class="n">edge_index</span><span class="p">,</span> <span class="n">node_slices</span><span class="p">,</span> <span class="n">edge_slices</span> <span class="o">=</span> <span class="n">to_homogeneous_edge_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_global_store</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">edge_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">_node_type_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node_slices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">_edge_type_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">edge_slices</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="c1"># Combine node attributes into a single tensor:</span>
+        <span class="k">if</span> <span class="n">node_attrs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node_attrs</span> <span class="o">=</span> <span class="n">_consistent_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_stores</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">node_attrs</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_stores</span><span class="p">]</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cat_dim__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_stores</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">can_infer_num_nodes</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node_slices</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Combine edge attributes into a single tensor:</span>
+        <span class="k">if</span> <span class="n">edge_attrs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">edge_attrs</span> <span class="o">=</span> <span class="n">_consistent_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_stores</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">edge_attrs</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">store</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">store</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_stores</span><span class="p">]</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__cat_dim__</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">edge_stores</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">dim</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">add_node_type</span><span class="p">:</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">node_slices</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tlx</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+            <span class="n">node_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)),</span> <span class="n">repeats</span><span class="o">=</span><span class="n">sizes</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">node_type</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">node_type</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tlx</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">add_edge_type</span> <span class="ow">and</span> <span class="n">edge_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="n">edge_slices</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+            <span class="n">sizes</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tlx</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+            <span class="n">edge_type</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)),</span> <span class="n">repeats</span><span class="o">=</span><span class="n">sizes</span><span class="p">)</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">edge_type</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">edge_type</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tlx</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">data</span></div></div>
+
+<span class="c1"># Helper functions ############################################################</span>
+
+
+<span class="k">def</span> <span class="nf">to_homogeneous_edge_index</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">:</span> <span class="n">HeteroGraph</span><span class="p">,):</span>
+
+<span class="c1">#  ) -&gt; Tuple[Optional[Tensor], Dict[NodeType, Any], Dict[EdgeType, Any]]:</span>
+    <span class="c1"># Record slice information per node type:</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">node_slices</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">NodeType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">node_type</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">_node_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">num_nodes</span>
+        <span class="n">node_slices</span><span class="p">[</span><span class="n">node_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">cumsum</span><span class="p">,</span> <span class="n">cumsum</span> <span class="o">+</span> <span class="n">num_nodes</span><span class="p">)</span>
+        <span class="n">cumsum</span> <span class="o">+=</span> <span class="n">num_nodes</span>
+
+    <span class="c1"># Record edge indices and slice information per edge type:</span>
+    <span class="n">cumsum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">edge_indices</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_slices</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">EdgeType</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">edge_type</span><span class="p">,</span> <span class="n">store</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">_edge_store_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">src</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">dst</span> <span class="o">=</span> <span class="n">edge_type</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="p">[[</span><span class="n">node_slices</span><span class="p">[</span><span class="n">src</span><span class="p">][</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">node_slices</span><span class="p">[</span><span class="n">dst</span><span class="p">][</span><span class="mi">0</span><span class="p">]]]</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tlx</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">edge_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">store</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">+</span> <span class="n">offset</span><span class="p">)</span>
+
+        <span class="n">num_edges</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">num_edges</span>
+        <span class="n">edge_slices</span><span class="p">[</span><span class="n">edge_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">cumsum</span><span class="p">,</span> <span class="n">cumsum</span> <span class="o">+</span> <span class="n">num_edges</span><span class="p">)</span>
+        <span class="n">cumsum</span> <span class="o">+=</span> <span class="n">num_edges</span>
+
+    <span class="n">edge_index</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Memory-efficient `torch.cat`:</span>
+        <span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_indices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">edge_index</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">edge_indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">node_slices</span><span class="p">,</span> <span class="n">edge_slices</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, BUPT-GAMMA LAB.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

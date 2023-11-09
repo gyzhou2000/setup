@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>gammagl.models.node2vec &mdash; GammaGL 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> GammaGL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">NOTES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#system-requrements">System requrements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#backend">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/installation.html#how-to-run">How to Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/introduction.html">Introduction by Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#data-handling-of-graphs">Data Handling of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#common-benchmark-datasets">Common Benchmark Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/introduction.html#mini-batches">Mini-batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_dataset.html">Creating Your Own Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-in-memory-datasets">Creating “In Memory Datasets”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#creating-larger-datasets">Creating “Larger” Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_dataset.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/create_gnn.html">Creating Message Passing Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#the-messagepassing-base-class">The “MessagePassing” Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-gcn-layer">Implementing the GCN Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#implementing-the-edge-convolution">Implementing the Edge Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/create_gnn.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/batching.html">Advanced Mini-Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#pairs-of-graphs">Pairs of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notes/batching.html#batching-along-new-dimensions">Batching Along New Dimensions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.data.html">gammagl.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BaseGraph.html">gammagl.data.BaseGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Graph.html">gammagl.data.Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.BatchGraph.html">gammagl.data.BatchGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.HeteroGraph.html">gammagl.data.HeteroGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.Dataset.html">gammagl.data.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.download_url.html">gammagl.data.download_url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.InMemoryDataset.html">gammagl.data.InMemoryDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_zip.html">gammagl.data.extract_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.data.extract_tar.html">gammagl.data.extract_tar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.datasets.html">gammagl.datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Amazon.html">gammagl.datasets.Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Coauthor.html">gammagl.datasets.Coauthor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.TUDataset.html">gammagl.datasets.TUDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Planetoid.html">gammagl.datasets.Planetoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Reddit.html">gammagl.datasets.Reddit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.IMDB.html">gammagl.datasets.IMDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Entities.html">gammagl.datasets.Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.Flickr.html">gammagl.datasets.Flickr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.HGBDataset.html">gammagl.datasets.HGBDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WikipediaNetwork.html">gammagl.datasets.WikipediaNetwork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.WebKB.html">gammagl.datasets.WebKB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ModelNet40.html">gammagl.datasets.ModelNet40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.DBLP.html">gammagl.datasets.DBLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.CA_GrQc.html">gammagl.datasets.CA_GrQc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.datasets.ZINC.html">gammagl.datasets.ZINC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.layers.html">gammagl.layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#convolutional-layers">Convolutional Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#pooling-layers">Pooling Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/gammagl.layers.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.loader.html">gammagl.loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.DataLoader.html">gammagl.loader.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.loader.RandomWalk.html">gammagl.loader.RandomWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.transforms.html">gammagl.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.BaseTransform.html">gammagl.transforms.BaseTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.AddMetaPaths.html">gammagl.transforms.AddMetaPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.Compose.html">gammagl.transforms.Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.SIGN.html">gammagl.transforms.SIGN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.NormalizeFeatures.html">gammagl.transforms.NormalizeFeatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.DropEdge.html">gammagl.transforms.DropEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.RandomLinkSplit.html">gammagl.transforms.RandomLinkSplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.mask_test_edges.html">gammagl.transforms.mask_test_edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.transforms.sparse_to_tuple.html">gammagl.transforms.sparse_to_tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/gammagl.utils.html">gammagl.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_A_norm_hat.html">gammagl.utils.calc_A_norm_hat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.calc_gcn_norm.html">gammagl.utils.calc_gcn_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.segment_softmax.html">gammagl.utils.segment_softmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.sort_edge_index.html">gammagl.utils.sort_edge_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.coalesce.html">gammagl.utils.coalesce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_undirected.html">gammagl.utils.to_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.is_undirected.html">gammagl.utils.is_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.degree.html">gammagl.utils.degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.add_self_loops.html">gammagl.utils.add_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.remove_self_loops.html">gammagl.utils.remove_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.mask_to_index.html">gammagl.utils.mask_to_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.index_to_mask.html">gammagl.utils.index_to_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.set_device.html">gammagl.utils.set_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_dense_batch.html">gammagl.utils.to_dense_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.k_hop_subgraph.html">gammagl.utils.k_hop_subgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.negative_sampling.html">gammagl.utils.negative_sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.to_scipy_sparse_matrix.html">gammagl.utils.to_scipy_sparse_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.read_embeddings.html">gammagl.utils.read_embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../generated/gammagl.utils.homophily.html">gammagl.utils.homophily</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GammaGL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>gammagl.models.node2vec</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gammagl.models.node2vec</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tensorlayerx</span> <span class="k">as</span> <span class="nn">tlx</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">..utils.num_nodes</span> <span class="kn">import</span> <span class="n">maybe_num_nodes</span>
+<span class="kn">from</span> <span class="nn">gammagl.loader</span> <span class="kn">import</span> <span class="n">RandomWalk</span>
+
+<span class="n">random_walk</span> <span class="o">=</span> <span class="n">RandomWalk</span><span class="p">(</span><span class="s2">&quot;node2vec&quot;</span><span class="p">)</span>
+
+<span class="n">EPS</span> <span class="o">=</span> <span class="mf">1e-15</span>
+
+
+<div class="viewcode-block" id="Node2vecModel"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel">[docs]</a><span class="k">class</span> <span class="nc">Node2vecModel</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;The Node2Vec model from the</span>
+<span class="sd">    `&quot;node2vec: Scalable Feature Learning for Networks&quot;</span>
+<span class="sd">    &lt;https://arxiv.org/abs/1607.00653&gt;`_ paper where random walks of</span>
+<span class="sd">    length :obj:`walk_length` are sampled in a given graph, and node embeddings</span>
+<span class="sd">    are learned via negative sampling optimization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        edge_index: Iterable</span>
+<span class="sd">            The edge indices.</span>
+<span class="sd">        edge_weight: Iterable</span>
+<span class="sd">            The edge weight.</span>
+<span class="sd">        embedding_dim: int</span>
+<span class="sd">            The size of each embedding vector.</span>
+<span class="sd">        walk_length: int</span>
+<span class="sd">            The walk length.</span>
+<span class="sd">        p: float</span>
+<span class="sd">            Likelihood of immediately revisiting a node in the walk.</span>
+<span class="sd">        q: float</span>
+<span class="sd">            Control parameter to interpolate between breadth-first strategy and depth-first strategy.</span>
+<span class="sd">        num_walks: int</span>
+<span class="sd">            The number of walks to sample for each node.</span>
+<span class="sd">        window_size: int</span>
+<span class="sd">            The actual context size which is considered for</span>
+<span class="sd">            positive samples. This parameter increases the effective sampling</span>
+<span class="sd">            rate by reusing samples across different source nodes.</span>
+<span class="sd">        num_negatives: int</span>
+<span class="sd">            The number of negative samples to use for each positive sample.</span>
+<span class="sd">        num_nodes: int</span>
+<span class="sd">            The number of nodes.</span>
+<span class="sd">        name: str</span>
+<span class="sd">            model name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">edge_index</span><span class="p">,</span>
+            <span class="n">edge_weight</span><span class="p">,</span>
+            <span class="n">embedding_dim</span><span class="p">,</span>
+            <span class="n">walk_length</span><span class="p">,</span>
+            <span class="n">p</span><span class="p">,</span>
+            <span class="n">q</span><span class="p">,</span>
+            <span class="n">num_walks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">window_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">num_negatives</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">num_nodes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Node2vecModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="n">walk_length</span> <span class="o">&gt;=</span> <span class="n">window_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span> <span class="o">=</span> <span class="n">edge_index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge_weight</span> <span class="o">=</span> <span class="n">edge_weight</span>
+
+        <span class="k">if</span> <span class="n">tlx</span><span class="o">.</span><span class="n">BACKEND</span> <span class="o">==</span> <span class="s1">&#39;mindspore&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">maybe_num_nodes</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">edge_index</span><span class="p">),</span> <span class="n">num_nodes</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">maybe_num_nodes</span><span class="p">(</span><span class="n">edge_index</span><span class="p">,</span> <span class="n">num_nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span> <span class="o">=</span> <span class="n">embedding_dim</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">walk_length</span> <span class="o">=</span> <span class="n">walk_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_walks</span> <span class="o">=</span> <span class="n">num_walks</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">window_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_negatives</span> <span class="o">=</span> <span class="n">num_negatives</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_walks</span> <span class="o">=</span> <span class="n">random_walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_walks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">walk_length</span><span class="p">,</span> <span class="n">edge_weight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_weight</span><span class="p">,</span>
+                                        <span class="n">p</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">,</span> <span class="n">num_nodes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">embedding_dim</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Node2vecModel.forward"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edge_index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_sample</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">neg_sample</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="Node2vecModel.pos_sample"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.pos_sample">[docs]</a>    <span class="k">def</span> <span class="nf">pos_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">random_walks</span>
+        <span class="n">rw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+
+        <span class="n">walks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_walks_per_rw</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">walk_length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_walks_per_rw</span><span class="p">):</span>
+            <span class="n">walks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rw</span><span class="p">[:,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">])</span>
+        <span class="n">walks</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">walks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">walks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">walks</span><span class="p">))],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node2vecModel.neg_sample"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.neg_sample">[docs]</a>    <span class="k">def</span> <span class="nf">neg_sample</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">,</span>
+                               <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_walks</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_negatives</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">walk_length</span><span class="p">))</span>
+
+        <span class="n">rw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rw</span><span class="p">)</span>
+        <span class="n">walks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_walks_per_rw</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">walk_length</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_walks_per_rw</span><span class="p">):</span>
+            <span class="n">walks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rw</span><span class="p">[:,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">])</span>
+
+        <span class="n">walks</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">walks</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tlx</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">walks</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">walks</span><span class="p">))],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Node2vecModel.loss"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.loss">[docs]</a>    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos_rw</span><span class="p">,</span> <span class="n">neg_rw</span><span class="p">):</span>
+        <span class="c1"># Positive loss.</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">pos_rw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">rest</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">pos_rw</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]))</span>
+
+        <span class="n">h_start</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="p">(</span><span class="n">pos_rw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">))</span>
+        <span class="n">h_rest</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">(</span><span class="n">pos_rw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">))</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">((</span><span class="n">h_start</span> <span class="o">*</span> <span class="n">h_rest</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">pos_loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">tlx</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">+</span> <span class="n">EPS</span><span class="p">))</span>
+
+        <span class="c1"># Negative loss.</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">neg_rw</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">rest</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">neg_rw</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]))</span>
+
+        <span class="n">h_start</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="p">(</span><span class="n">neg_rw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">))</span>
+        <span class="n">h_rest</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))),</span> <span class="p">(</span><span class="n">neg_rw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding_dim</span><span class="p">))</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="n">tlx</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">((</span><span class="n">h_start</span> <span class="o">*</span> <span class="n">h_rest</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+        <span class="n">neg_loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">tlx</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tlx</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">tlx</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">+</span> <span class="n">EPS</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">pos_loss</span> <span class="o">+</span> <span class="n">neg_loss</span></div>
+
+<div class="viewcode-block" id="Node2vecModel.campute"><a class="viewcode-back" href="../../../generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.campute">[docs]</a>    <span class="k">def</span> <span class="nf">campute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="o">.</span><span class="n">all_weights</span>
+        <span class="k">return</span> <span class="n">emb</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, BUPT-GAMMA LAB.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

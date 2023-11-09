@@ -1,0 +1,1454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Index &mdash; GammaGL 0.2.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GammaGL
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">NOTES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/installation.html#system-requrements">System requrements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/installation.html#backend">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/installation.html#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/installation.html#how-to-run">How to Run</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/introduction.html">Introduction by Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/introduction.html#data-handling-of-graphs">Data Handling of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/introduction.html#common-benchmark-datasets">Common Benchmark Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/introduction.html#mini-batches">Mini-batches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/create_dataset.html">Creating Your Own Datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_dataset.html#creating-in-memory-datasets">Creating “In Memory Datasets”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_dataset.html#creating-larger-datasets">Creating “Larger” Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_dataset.html#frequently-asked-questions">Frequently Asked Questions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_dataset.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/create_gnn.html">Creating Message Passing Networks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_gnn.html#the-messagepassing-base-class">The “MessagePassing” Base Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_gnn.html#implementing-the-gcn-layer">Implementing the GCN Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_gnn.html#implementing-the-edge-convolution">Implementing the Edge Convolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/create_gnn.html#exercises">Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/batching.html">Advanced Mini-Batching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/batching.html#pairs-of-graphs">Pairs of Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/batching.html#bipartite-graphs">Bipartite Graphs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/batching.html#batching-along-new-dimensions">Batching Along New Dimensions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.data.html">gammagl.data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.BaseGraph.html">gammagl.data.BaseGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.Graph.html">gammagl.data.Graph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.BatchGraph.html">gammagl.data.BatchGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.HeteroGraph.html">gammagl.data.HeteroGraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.Dataset.html">gammagl.data.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.download_url.html">gammagl.data.download_url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.InMemoryDataset.html">gammagl.data.InMemoryDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.extract_zip.html">gammagl.data.extract_zip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.data.extract_tar.html">gammagl.data.extract_tar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.datasets.html">gammagl.datasets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Amazon.html">gammagl.datasets.Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Coauthor.html">gammagl.datasets.Coauthor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.TUDataset.html">gammagl.datasets.TUDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Planetoid.html">gammagl.datasets.Planetoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Reddit.html">gammagl.datasets.Reddit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.IMDB.html">gammagl.datasets.IMDB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Entities.html">gammagl.datasets.Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.Flickr.html">gammagl.datasets.Flickr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.HGBDataset.html">gammagl.datasets.HGBDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.WikipediaNetwork.html">gammagl.datasets.WikipediaNetwork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.WebKB.html">gammagl.datasets.WebKB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.ModelNet40.html">gammagl.datasets.ModelNet40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.DBLP.html">gammagl.datasets.DBLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.CA_GrQc.html">gammagl.datasets.CA_GrQc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.datasets.ZINC.html">gammagl.datasets.ZINC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.layers.html">gammagl.layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/gammagl.layers.html#convolutional-layers">Convolutional Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/gammagl.layers.html#pooling-layers">Pooling Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/gammagl.layers.html#model">Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.loader.html">gammagl.loader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.loader.DataLoader.html">gammagl.loader.DataLoader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.loader.RandomWalk.html">gammagl.loader.RandomWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.transforms.html">gammagl.transforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.BaseTransform.html">gammagl.transforms.BaseTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.AddMetaPaths.html">gammagl.transforms.AddMetaPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.Compose.html">gammagl.transforms.Compose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.SIGN.html">gammagl.transforms.SIGN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.NormalizeFeatures.html">gammagl.transforms.NormalizeFeatures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.DropEdge.html">gammagl.transforms.DropEdge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.RandomLinkSplit.html">gammagl.transforms.RandomLinkSplit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.mask_test_edges.html">gammagl.transforms.mask_test_edges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.transforms.sparse_to_tuple.html">gammagl.transforms.sparse_to_tuple</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/gammagl.utils.html">gammagl.utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.calc_A_norm_hat.html">gammagl.utils.calc_A_norm_hat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.calc_gcn_norm.html">gammagl.utils.calc_gcn_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.segment_softmax.html">gammagl.utils.segment_softmax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.sort_edge_index.html">gammagl.utils.sort_edge_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.coalesce.html">gammagl.utils.coalesce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.to_undirected.html">gammagl.utils.to_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.is_undirected.html">gammagl.utils.is_undirected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.degree.html">gammagl.utils.degree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.add_self_loops.html">gammagl.utils.add_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.remove_self_loops.html">gammagl.utils.remove_self_loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.mask_to_index.html">gammagl.utils.mask_to_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.index_to_mask.html">gammagl.utils.index_to_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.set_device.html">gammagl.utils.set_device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.to_dense_batch.html">gammagl.utils.to_dense_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.k_hop_subgraph.html">gammagl.utils.k_hop_subgraph</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.negative_sampling.html">gammagl.utils.negative_sampling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.to_scipy_sparse_matrix.html">gammagl.utils.to_scipy_sparse_matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.read_embeddings.html">gammagl.utils.read_embeddings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/gammagl.utils.homophily.html">gammagl.utils.homophily</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GammaGL</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Index</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.__cat_dim__">__cat_dim__() (BaseGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.__cat_dim__">(Graph method)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.__cat_dim__">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.__inc__">__inc__() (BaseGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.__inc__">(Graph method)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.__inc__">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.add_self_loop">add_self_loop() (Graph method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.add_self_loops.html#gammagl.utils.add_self_loops">add_self_loops (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.AddMetaPaths.html#gammagl.transforms.AddMetaPaths">AddMetaPaths (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.adj_full_id">adj_full_id (Flickr attribute)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.CompConv.html#gammagl.layers.conv.CompConv.aggregate">aggregate() (CompConv method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.layers.conv.HypergraphConv.html#gammagl.layers.conv.HypergraphConv.aggregate">(HypergraphConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.aggregate">(MessagePassing method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.PNAConv.html#gammagl.layers.conv.PNAConv.aggregate">(PNAConv method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.AGNNConv.html#gammagl.layers.conv.AGNNConv">AGNNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.AGNNModel.html#gammagl.models.AGNNModel">AGNNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon">Amazon (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.apply">apply() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.apply_">apply_() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.APPNPConv.html#gammagl.layers.conv.APPNPConv">APPNPConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.APPNPModel.html#gammagl.models.APPNPModel">APPNPModel (class in gammagl.models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph">BaseGraph (class in gammagl.data)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.transforms.BaseTransform.html#gammagl.transforms.BaseTransform">BaseTransform (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph">BatchGraph (class in gammagl.data)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc">CA_GrQc (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.utils.calc_A_norm_hat.html#gammagl.utils.calc_A_norm_hat">calc_A_norm_hat (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.utils.calc_gcn_norm.html#gammagl.utils.calc_gcn_norm">calc_gcn_norm (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel.campute">campute() (DeepWalkModel method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.campute">(Node2vecModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.layers.conv.ChebConv.html#gammagl.layers.conv.ChebConv">ChebConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.ChebNetModel.html#gammagl.models.ChebNetModel">ChebNetModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.class_map_id">class_map_id (Flickr attribute)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.cleaned_url">cleaned_url (TUDataset attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.clone">clone() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.coalesce.html#gammagl.utils.coalesce">coalesce (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.coalesce">coalesce() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor">Coauthor (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.collate">collate() (InMemoryDataset static method)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.collect">collect() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.CompConv.html#gammagl.layers.conv.CompConv">CompConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.CompGCN.html#gammagl.models.CompGCN">CompGCN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.Compose.html#gammagl.transforms.Compose">Compose (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.copy">copy() (InMemoryDataset method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.loader.DataLoader.html#gammagl.loader.DataLoader">DataLoader (class in gammagl.loader)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset">Dataset (class in gammagl.data)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP">DBLP (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel">DeepWalkModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.utils.degree.html#gammagl.utils.degree">degree (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.DGCNN.html#gammagl.models.DGCNN">DGCNN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.DGCNNModel.html#gammagl.models.DGCNNModel">DGCNNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.DGIModel.html#gammagl.models.DGIModel">DGIModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.download">download() (Amazon method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.download">(CA_GrQc method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.download">(Coauthor method)</a>
+</li>
+        <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.download">(Dataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP.download">(DBLP method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.download">(Entities method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.download">(Flickr method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.download">(HGBDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB.download">(IMDB method)</a>
+</li>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.download">(InMemoryDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.download">(ModelNet40 method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.download">(Planetoid method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit.download">(Reddit method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.download">(TUDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.download">(WebKB method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.download">(WikipediaNetwork method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.download">(ZINC method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.download_url.html#gammagl.data.download_url">download_url (class in gammagl.data)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.DropEdge.html#gammagl.transforms.DropEdge">DropEdge (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.dump">dump() (Graph method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.E_step">E_step() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.edge_items">edge_items() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.edge_stores">edge_stores (HeteroGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.edge_types">edge_types (HeteroGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.EdgeConv.html#gammagl.layers.conv.EdgeConv">EdgeConv (class in gammagl.layers.conv)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.EM">EM() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.models.GAEModel.html#gammagl.models.GAEModel.encode">encode() (GAEModel method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.VGAEModel.html#gammagl.models.VGAEModel.encode">(VGAEModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities">Entities (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.data.extract_tar.html#gammagl.data.extract_tar">extract_tar (class in gammagl.data)</a>
+</li>
+      <li><a href="generated/gammagl.data.extract_zip.html#gammagl.data.extract_zip">extract_zip (class in gammagl.data)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.FAGCNConv.html#gammagl.layers.conv.FAGCNConv">FAGCNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.FAGCNModel.html#gammagl.models.FAGCNModel">FAGCNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.feats_id">feats_id (Flickr attribute)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.file_names">file_names (CA_GrQc property)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.FILMConv.html#gammagl.layers.conv.FILMConv">FILMConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.FILMModel.html#gammagl.models.FILMModel">FILMModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr">Flickr (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.AGNNConv.html#gammagl.layers.conv.AGNNConv.forward">forward() (AGNNConv method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.AGNNModel.html#gammagl.models.AGNNModel.forward">(AGNNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.APPNPConv.html#gammagl.layers.conv.APPNPConv.forward">(APPNPConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.APPNPModel.html#gammagl.models.APPNPModel.forward">(APPNPModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.ChebConv.html#gammagl.layers.conv.ChebConv.forward">(ChebConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.ChebNetModel.html#gammagl.models.ChebNetModel.forward">(ChebNetModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.CompConv.html#gammagl.layers.conv.CompConv.forward">(CompConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.CompGCN.html#gammagl.models.CompGCN.forward">(CompGCN method)</a>
+</li>
+        <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel.forward">(DeepWalkModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.DGCNN.html#gammagl.models.DGCNN.forward">(DGCNN method)</a>
+</li>
+        <li><a href="generated/gammagl.models.DGCNNModel.html#gammagl.models.DGCNNModel.forward">(DGCNNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.DGIModel.html#gammagl.models.DGIModel.forward">(DGIModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.EdgeConv.html#gammagl.layers.conv.EdgeConv.forward">(EdgeConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.FAGCNConv.html#gammagl.layers.conv.FAGCNConv.forward">(FAGCNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.FAGCNModel.html#gammagl.models.FAGCNModel.forward">(FAGCNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.FILMConv.html#gammagl.layers.conv.FILMConv.forward">(FILMConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.FILMModel.html#gammagl.models.FILMModel.forward">(FILMModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GAEModel.html#gammagl.models.GAEModel.forward">(GAEModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GATConv.html#gammagl.layers.conv.GATConv.forward">(GATConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GATModel.html#gammagl.models.GATModel.forward">(GATModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GATV2Conv.html#gammagl.layers.conv.GATV2Conv.forward">(GATV2Conv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GATV2Model.html#gammagl.models.GATV2Model.forward">(GATV2Model method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GCNConv.html#gammagl.layers.conv.GCNConv.forward">(GCNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GCNIIConv.html#gammagl.layers.conv.GCNIIConv.forward">(GCNIIConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GCNIIModel.html#gammagl.models.GCNIIModel.forward">(GCNIIModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GCNModel.html#gammagl.models.GCNModel.forward">(GCNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GINConv.html#gammagl.layers.conv.GINConv.forward">(GINConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GINModel.html#gammagl.models.GINModel.forward">(GINModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GMMConv.html#gammagl.layers.conv.GMMConv.forward">(GMMConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GMMModel.html#gammagl.models.GMMModel.forward">(GMMModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GPRConv.html#gammagl.layers.conv.GPRConv.forward">(GPRConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GPRGNNModel.html#gammagl.models.GPRGNNModel.forward">(GPRGNNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GraceModel.html#gammagl.models.GraceModel.forward">(GraceModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GraphSAGE_Full_Model.html#gammagl.models.GraphSAGE_Full_Model.forward">(GraphSAGE_Full_Model method)</a>
+</li>
+        <li><a href="generated/gammagl.models.GraphSAGE_Sample_Model.html#gammagl.models.GraphSAGE_Sample_Model.forward">(GraphSAGE_Sample_Model method)</a>
+</li>
+        <li><a href="generated/gammagl.models.HAN.html#gammagl.models.HAN.forward">(HAN method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HANConv.html#gammagl.layers.conv.HANConv.forward">(HANConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HardGATConv.html#gammagl.layers.conv.HardGATConv.forward">(HardGATConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.HardGATModel.html#gammagl.models.HardGATModel.forward">(HardGATModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.HCHA.html#gammagl.models.HCHA.forward">(HCHA method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HeteroConv.html#gammagl.layers.conv.HeteroConv.forward">(HeteroConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HGTConv.html#gammagl.layers.conv.HGTConv.forward">(HGTConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.HGTModel.html#gammagl.models.HGTModel.forward">(HGTModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.HPN.html#gammagl.models.HPN.forward">(HPN method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HPNConv.html#gammagl.layers.conv.HPNConv.forward">(HPNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HypergraphConv.html#gammagl.layers.conv.HypergraphConv.forward">(HypergraphConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.JKNet.html#gammagl.models.JKNet.forward">(JKNet method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.JumpingKnowledge.html#gammagl.layers.conv.JumpingKnowledge.forward">(JumpingKnowledge method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.MixHopConv.html#gammagl.layers.conv.MixHopConv.forward">(MixHopConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.MIXHOPModel.html#gammagl.models.MIXHOPModel.forward">(MIXHOPModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.forward">(Node2vecModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.PNAConv.html#gammagl.layers.conv.PNAConv.forward">(PNAConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.PNAModel.html#gammagl.models.PNAModel.forward">(PNAModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.RGCN.html#gammagl.models.RGCN.forward">(RGCN method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.RGCNConv.html#gammagl.layers.conv.RGCNConv.forward">(RGCNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.SAGEConv.html#gammagl.layers.conv.SAGEConv.forward">(SAGEConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.SGCModel.html#gammagl.models.SGCModel.forward">(SGCModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.SGConv.html#gammagl.layers.conv.SGConv.forward">(SGConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.SimpleHGNConv.html#gammagl.layers.conv.SimpleHGNConv.forward">(SimpleHGNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.models.SimpleHGNModel.html#gammagl.models.SimpleHGNModel.forward">(SimpleHGNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.models.VGAEModel.html#gammagl.models.VGAEModel.forward">(VGAEModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph.from_data_list">from_data_list() (BatchGraph class method)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.from_dict">from_dict() (Graph class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.GAEModel.html#gammagl.models.GAEModel">GAEModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GATConv.html#gammagl.layers.conv.GATConv">GATConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GATModel.html#gammagl.models.GATModel">GATModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GATV2Conv.html#gammagl.layers.conv.GATV2Conv">GATV2Conv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GATV2Model.html#gammagl.models.GATV2Model">GATV2Model (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GCNConv.html#gammagl.layers.conv.GCNConv">GCNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GCNIIConv.html#gammagl.layers.conv.GCNIIConv">GCNIIConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GCNIIModel.html#gammagl.models.GCNIIModel">GCNIIModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.GCNModel.html#gammagl.models.GCNModel">GCNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN">GEstimationN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.get">get() (Dataset method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.get">(InMemoryDataset method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.get_edge_store">get_edge_store() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraceModel.html#gammagl.models.GraceModel.get_embeding">get_embeding() (GraceModel method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph.get_example">get_example() (BatchGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraceModel.html#gammagl.models.GraceModel.get_loss">get_loss() (GraceModel method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.get_node_store">get_node_store() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GINConv.html#gammagl.layers.conv.GINConv">GINConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GINModel.html#gammagl.models.GINModel">GINModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.pool.global_max_pool.html#gammagl.layers.pool.global_max_pool">global_max_pool (class in gammagl.layers.pool)</a>
+</li>
+      <li><a href="generated/gammagl.layers.pool.global_mean_pool.html#gammagl.layers.pool.global_mean_pool">global_mean_pool (class in gammagl.layers.pool)</a>
+</li>
+      <li><a href="generated/gammagl.layers.pool.global_min_pool.html#gammagl.layers.pool.global_min_pool">global_min_pool (class in gammagl.layers.pool)</a>
+</li>
+      <li><a href="generated/gammagl.layers.pool.global_sort_pool.html#gammagl.layers.pool.global_sort_pool">global_sort_pool (class in gammagl.layers.pool)</a>
+</li>
+      <li><a href="generated/gammagl.layers.pool.global_sum_pool.html#gammagl.layers.pool.global_sum_pool">global_sum_pool (class in gammagl.layers.pool)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GMMConv.html#gammagl.layers.conv.GMMConv">GMMConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GMMModel.html#gammagl.models.GMMModel">GMMModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GPRConv.html#gammagl.layers.conv.GPRConv">GPRConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.GPRGNNModel.html#gammagl.models.GPRGNNModel">GPRGNNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraceModel.html#gammagl.models.GraceModel">GraceModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph">Graph (class in gammagl.data)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraphSAGE_Full_Model.html#gammagl.models.GraphSAGE_Full_Model">GraphSAGE_Full_Model (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraphSAGE_Sample_Model.html#gammagl.models.GraphSAGE_Sample_Model">GraphSAGE_Sample_Model (class in gammagl.models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.HAN.html#gammagl.models.HAN">HAN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HANConv.html#gammagl.layers.conv.HANConv">HANConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HardGATConv.html#gammagl.layers.conv.HardGATConv">HardGATConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.HardGATModel.html#gammagl.models.HardGATModel">HardGATModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.has_isolated_nodes">has_isolated_nodes() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.has_self_loops">has_self_loops() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.models.HCHA.html#gammagl.models.HCHA">HCHA (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HeteroConv.html#gammagl.layers.conv.HeteroConv">HeteroConv (class in gammagl.layers.conv)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph">HeteroGraph (class in gammagl.data)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset">HGBDataset (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HGTConv.html#gammagl.layers.conv.HGTConv">HGTConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.HGTModel.html#gammagl.models.HGTModel">HGTModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.utils.homophily.html#gammagl.utils.homophily">homophily (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.HPN.html#gammagl.models.HPN">HPN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HPNConv.html#gammagl.layers.conv.HPNConv">HPNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HypergraphConv.html#gammagl.layers.conv.HypergraphConv">HypergraphConv (class in gammagl.layers.conv)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB">IMDB (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.in_degree">in_degree (Graph property)</a>
+</li>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph.index_select">index_select() (BatchGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.index_select">(Dataset method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.utils.index_to_mask.html#gammagl.utils.index_to_mask">index_to_mask (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraphSAGE_Sample_Model.html#gammagl.models.GraphSAGE_Sample_Model.inference">inference() (GraphSAGE_Sample_Model method)</a>
+</li>
+      <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset">InMemoryDataset (class in gammagl.data)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.is_coalesced">is_coalesced() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.is_directed">is_directed() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.is_edge_attr">is_edge_attr() (Graph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.is_node_attr">is_node_attr() (Graph method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.is_undirected.html#gammagl.utils.is_undirected">is_undirected (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.is_undirected">is_undirected() (BaseGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.is_undirected">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.JKNet.html#gammagl.models.JKNet">JKNet (class in gammagl.models)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.JumpingKnowledge.html#gammagl.layers.conv.JumpingKnowledge">JumpingKnowledge (class in gammagl.layers.conv)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.utils.k_hop_subgraph.html#gammagl.utils.k_hop_subgraph">k_hop_subgraph (class in gammagl.utils)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.keys">keys (BaseGraph property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.len">len() (Dataset method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.len">(InMemoryDataset method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.load">load() (Graph class method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.load_data">load_data() (Dataset method)</a>
+</li>
+      <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel.loss">loss() (DeepWalkModel method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.loss">(Node2vecModel method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.M_step">M_step() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.mask_test_edges.html#gammagl.transforms.mask_test_edges">mask_test_edges (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.utils.mask_to_index.html#gammagl.utils.mask_to_index">mask_to_index (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.AGNNConv.html#gammagl.layers.conv.AGNNConv.message">message() (AGNNConv method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.layers.conv.CompConv.html#gammagl.layers.conv.CompConv.message">(CompConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.EdgeConv.html#gammagl.layers.conv.EdgeConv.message">(EdgeConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.FAGCNConv.html#gammagl.layers.conv.FAGCNConv.message">(FAGCNConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.FILMConv.html#gammagl.layers.conv.FILMConv.message">(FILMConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GATConv.html#gammagl.layers.conv.GATConv.message">(GATConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GATV2Conv.html#gammagl.layers.conv.GATV2Conv.message">(GATV2Conv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.GINConv.html#gammagl.layers.conv.GINConv.message">(GINConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HardGATConv.html#gammagl.layers.conv.HardGATConv.message">(HardGATConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HGTConv.html#gammagl.layers.conv.HGTConv.message">(HGTConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HypergraphConv.html#gammagl.layers.conv.HypergraphConv.message">(HypergraphConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.message">(MessagePassing method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.PNAConv.html#gammagl.layers.conv.PNAConv.message">(PNAConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.SimpleHGNConv.html#gammagl.layers.conv.SimpleHGNConv.message">(SimpleHGNConv method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.message_aggregate">message_aggregate() (MessagePassing method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing">MessagePassing (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.metadata">metadata() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.MixHopConv.html#gammagl.layers.conv.MixHopConv">MixHopConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.MIXHOPModel.html#gammagl.models.MIXHOPModel">MIXHOPModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40">ModelNet40 (class in gammagl.datasets)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.names">names (HGBDataset attribute)</a>
+</li>
+      <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel.neg_sample">neg_sample() (DeepWalkModel method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.neg_sample">(Node2vecModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.utils.negative_sampling.html#gammagl.utils.negative_sampling">negative_sampling (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel">Node2vecModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.node_items">node_items() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.node_stores">node_stores (HeteroGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.node_types">node_types (HeteroGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.NormalizeFeatures.html#gammagl.transforms.NormalizeFeatures">NormalizeFeatures (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.num_classes">num_classes (Entities property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.num_classes">(InMemoryDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.num_classes">(ModelNet40 property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.num_edge_attributes">num_edge_attributes (TUDataset property)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.num_edge_features">num_edge_features (Dataset property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.num_edge_features">(Graph property)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.num_edge_features">(HeteroGraph property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.num_edge_labels">num_edge_labels (TUDataset property)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.num_edges">num_edges (BaseGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.num_features">num_features (Dataset property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.num_features">(Graph property)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.num_features">(HeteroGraph property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph.num_graphs">num_graphs (BatchGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.num_node_attributes">num_node_attributes (TUDataset property)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.num_node_features">num_node_features (Dataset property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.num_node_features">(Graph property)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.num_node_features">(HeteroGraph property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.num_node_labels">num_node_labels (TUDataset property)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.num_nodes">num_nodes (BaseGraph property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.num_nodes">(HeteroGraph property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.num_relations">num_relations (Entities property)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.numpy">numpy() (Graph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.numpy">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.out_degree">out_degree (Graph property)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid">Planetoid (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.PNAConv.html#gammagl.layers.conv.PNAConv">PNAConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.PNAModel.html#gammagl.models.PNAModel">PNAModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.models.DeepWalkModel.html#gammagl.models.DeepWalkModel.pos_sample">pos_sample() (DeepWalkModel method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.Node2vecModel.html#gammagl.models.Node2vecModel.pos_sample">(Node2vecModel method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.process">process() (Amazon method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.process">(Coauthor method)</a>
+</li>
+        <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.process">(Dataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP.process">(DBLP method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.process">(Entities method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.process">(Flickr method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.process">(HGBDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB.process">(IMDB method)</a>
+</li>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.process">(InMemoryDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.process">(ModelNet40 method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.process">(Planetoid method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit.process">(Reddit method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.process">(TUDataset method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.process">(WebKB method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.process">(WikipediaNetwork method)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.process">(ZINC method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.processed_dir">processed_dir (Amazon property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.processed_dir">(Coauthor property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.processed_dir">(Entities property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.processed_dir">(HGBDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.processed_dir">(Planetoid property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.processed_dir">(TUDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.processed_dir">(WebKB property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.processed_dir">(WikipediaNetwork property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.processed_dir">(ZINC property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.processed_file_names">processed_file_names (Amazon property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.processed_file_names">(Coauthor property)</a>
+</li>
+        <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.processed_file_names">(Dataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP.processed_file_names">(DBLP property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.processed_file_names">(Entities property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.processed_file_names">(Flickr property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.processed_file_names">(HGBDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB.processed_file_names">(IMDB property)</a>
+</li>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.processed_file_names">(InMemoryDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.processed_file_names">(ModelNet40 property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.processed_file_names">(Planetoid property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit.processed_file_names">(Reddit property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.processed_file_names">(TUDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.processed_file_names">(WebKB property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.processed_file_names">(WikipediaNetwork property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.processed_file_names">(ZINC property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.processed_paths">processed_paths (Dataset property)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.processed_url">processed_url (WikipediaNetwork attribute)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.CompConv.html#gammagl.layers.conv.CompConv.propagate">propagate() (CompConv method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.layers.conv.HGTConv.html#gammagl.layers.conv.HGTConv.propagate">(HGTConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.propagate">(MessagePassing method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.SimpleHGNConv.html#gammagl.layers.conv.SimpleHGNConv.propagate">(SimpleHGNConv method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.transforms.RandomLinkSplit.html#gammagl.transforms.RandomLinkSplit">RandomLinkSplit (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.loader.RandomWalk.html#gammagl.loader.RandomWalk">RandomWalk (class in gammagl.loader)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.raw_dir">raw_dir (Amazon property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.raw_dir">(Coauthor property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.raw_dir">(Entities property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.raw_dir">(HGBDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.raw_dir">(Planetoid property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.raw_dir">(TUDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.raw_dir">(WebKB property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.raw_dir">(WikipediaNetwork property)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.raw_file_names">raw_file_names (Amazon property)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.raw_file_names">(Coauthor property)</a>
+</li>
+        <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.raw_file_names">(Dataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP.raw_file_names">(DBLP property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.raw_file_names">(Entities property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.raw_file_names">(Flickr property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.raw_file_names">(HGBDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB.raw_file_names">(IMDB property)</a>
+</li>
+        <li><a href="generated/gammagl.data.InMemoryDataset.html#gammagl.data.InMemoryDataset.raw_file_names">(InMemoryDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.raw_file_names">(ModelNet40 property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.raw_file_names">(Planetoid property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit.raw_file_names">(Reddit property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.raw_file_names">(TUDataset property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.raw_file_names">(WebKB property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.raw_file_names">(WikipediaNetwork property)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.raw_file_names">(ZINC property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.raw_paths">raw_paths (Dataset property)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork.raw_url">raw_url (WikipediaNetwork attribute)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.read_edges">read_edges() (CA_GrQc method)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.read_edges_from_file">read_edges_from_file() (CA_GrQc method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.read_embeddings.html#gammagl.utils.read_embeddings">read_embeddings (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit">Reddit (class in gammagl.datasets)</a>
+</li>
+      <li><a href="generated/gammagl.utils.remove_self_loops.html#gammagl.utils.remove_self_loops">remove_self_loops (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.rename">rename() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.models.VGAEModel.html#gammagl.models.VGAEModel.reparameterize">reparameterize() (VGAEModel method)</a>
+</li>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.reset_obs">reset_obs() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.GPRConv.html#gammagl.layers.conv.GPRConv.reset_parameters">reset_parameters() (GPRConv method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.models.GPRGNNModel.html#gammagl.models.GPRGNNModel.reset_parameters">(GPRGNNModel method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HeteroConv.html#gammagl.layers.conv.HeteroConv.reset_parameters">(HeteroConv method)</a>
+</li>
+        <li><a href="generated/gammagl.layers.conv.HypergraphConv.html#gammagl.layers.conv.HypergraphConv.reset_parameters">(HypergraphConv method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.revise_pred">revise_pred() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.models.RGCN.html#gammagl.models.RGCN">RGCN (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.RGCNConv.html#gammagl.layers.conv.RGCNConv">RGCNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.role_id">role_id (Flickr attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.SAGEConv.html#gammagl.layers.conv.SAGEConv">SAGEConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.save_data">save_data() (Dataset method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.segment_softmax.html#gammagl.utils.segment_softmax">segment_softmax (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.HardGATConv.html#gammagl.layers.conv.HardGATConv.select_topk">select_topk() (HardGATConv method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.set_device.html#gammagl.utils.set_device">set_device (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.models.SGCModel.html#gammagl.models.SGCModel">SGCModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.SGConv.html#gammagl.layers.conv.SGConv">SGConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.data.Dataset.html#gammagl.data.Dataset.shuffle">shuffle() (Dataset method)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.SIGN.html#gammagl.transforms.SIGN">SIGN (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.models.GraceModel.html#gammagl.models.GraceModel.sim">sim() (GraceModel method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.SimpleHGNConv.html#gammagl.layers.conv.SimpleHGNConv">SimpleHGNConv (class in gammagl.layers.conv)</a>
+</li>
+      <li><a href="generated/gammagl.models.SimpleHGNModel.html#gammagl.models.SimpleHGNModel">SimpleHGNModel (class in gammagl.models)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.size">size() (BaseGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.sort_edge_index.html#gammagl.utils.sort_edge_index">sort_edge_index (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.sorted_edges">sorted_edges() (Graph method)</a>
+</li>
+      <li><a href="generated/gammagl.transforms.sparse_to_tuple.html#gammagl.transforms.sparse_to_tuple">sparse_to_tuple (class in gammagl.transforms)</a>
+</li>
+      <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.special_args">special_args (MessagePassing attribute)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.split_url">split_url (ZINC attribute)</a>
+</li>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.stores">stores (HeteroGraph property)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.str_list_to_int">str_list_to_int() (CA_GrQc method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.tensor">tensor() (Graph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BatchGraph.html#gammagl.data.BatchGraph.to_data_list">to_data_list() (BatchGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.utils.to_dense_batch.html#gammagl.utils.to_dense_batch">to_dense_batch (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.to_dict">to_dict() (BaseGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.to_dict">(Graph method)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_dict">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.to_heterogeneous">to_heterogeneous() (Graph method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_homogeneous">to_homogeneous() (HeteroGraph method)</a>
+</li>
+      <li><a href="generated/gammagl.data.BaseGraph.html#gammagl.data.BaseGraph.to_namedtuple">to_namedtuple() (BaseGraph method)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.data.Graph.html#gammagl.data.Graph.to_namedtuple">(Graph method)</a>
+</li>
+        <li><a href="generated/gammagl.data.HeteroGraph.html#gammagl.data.HeteroGraph.to_namedtuple">(HeteroGraph method)</a>
+</li>
+      </ul></li>
+      <li><a href="generated/gammagl.utils.to_scipy_sparse_matrix.html#gammagl.utils.to_scipy_sparse_matrix">to_scipy_sparse_matrix (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.utils.to_undirected.html#gammagl.utils.to_undirected">to_undirected (class in gammagl.utils)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset">TUDataset (class in gammagl.datasets)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.layers.conv.MessagePassing.html#gammagl.layers.conv.MessagePassing.update">update() (MessagePassing method)</a>
+</li>
+      <li><a href="generated/gammagl.models.GEstimationN.html#gammagl.models.GEstimationN.update_obs">update_obs() (GEstimationN method)</a>
+</li>
+      <li><a href="generated/gammagl.datasets.Amazon.html#gammagl.datasets.Amazon.url">url (Amazon attribute)</a>
+
+      <ul>
+        <li><a href="generated/gammagl.datasets.CA_GrQc.html#gammagl.datasets.CA_GrQc.url">(CA_GrQc attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Coauthor.html#gammagl.datasets.Coauthor.url">(Coauthor attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.DBLP.html#gammagl.datasets.DBLP.url">(DBLP attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Entities.html#gammagl.datasets.Entities.url">(Entities attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Flickr.html#gammagl.datasets.Flickr.url">(Flickr attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.IMDB.html#gammagl.datasets.IMDB.url">(IMDB attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ModelNet40.html#gammagl.datasets.ModelNet40.url">(ModelNet40 attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Planetoid.html#gammagl.datasets.Planetoid.url">(Planetoid attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.Reddit.html#gammagl.datasets.Reddit.url">(Reddit attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.TUDataset.html#gammagl.datasets.TUDataset.url">(TUDataset attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB.url">(WebKB attribute)</a>
+</li>
+        <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC.url">(ZINC attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.HGBDataset.html#gammagl.datasets.HGBDataset.urls">urls (HGBDataset attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.models.VGAEModel.html#gammagl.models.VGAEModel">VGAEModel (class in gammagl.models)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.WebKB.html#gammagl.datasets.WebKB">WebKB (class in gammagl.datasets)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.WikipediaNetwork.html#gammagl.datasets.WikipediaNetwork">WikipediaNetwork (class in gammagl.datasets)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="generated/gammagl.datasets.ZINC.html#gammagl.datasets.ZINC">ZINC (class in gammagl.datasets)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, BUPT-GAMMA LAB.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

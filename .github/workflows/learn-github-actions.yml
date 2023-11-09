@@ -1,4 +1,4 @@
-name: Test The Docs
+name: Test
 
 on:
   workflow_dispatch:
