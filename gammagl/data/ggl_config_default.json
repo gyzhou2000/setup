@@ -1,4 +1,0 @@
-{
-  "tlx_backend": "tensorflow",
-  "dataset_root": "@datasets"
-}

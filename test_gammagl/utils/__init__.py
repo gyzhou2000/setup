@@ -1,8 +1,8 @@
 from .degree import degree
 
 
-__all__ = [
-    'degree'
-]
+# __all__ = [
+#     'degree'
+# ]
 
-classes = __all__
+# classes = __all__
